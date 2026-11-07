@@ -1,0 +1,45 @@
+.titulo{
+    color: blue;
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.fundo_do_arquivo{
+    background-color: #000000;
+}
+.rodape{
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+.navbar {
+    background-color: #a020F0;
+    top: 0;
+    width: 100%;    
+    left: 0;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+.nav-links{
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+.nav-links a{
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-links a:hover{
+    color: #00ff66;
+}
