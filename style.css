@@ -1,10 +1,10 @@
 .titulo{
-    color: blue;
+    color: black;
     font-size: 24px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, sans-serif;
 }
 .fundo_do_arquivo{
-    background-color: #000000;
+    background-color: #ffffff;
 }
 .rodape{
     background-color: #000000;
@@ -13,7 +13,7 @@
     padding: 10px;
 }
 .navbar {
-    background-color: #a020F0;
+    background-color: #0b1066;
     top: 0;
     width: 100%;    
     left: 0;
