@@ -1,45 +1,267 @@
-.titulo{
-    color: black;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    box-sizing: border-box;
 }
-.fundo_do_arquivo{
+
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
     background-color: #ffffff;
+    color: #171720;
 }
-.rodape{
-    background-color: #000000;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
+
+/* MENU */
+
 .navbar {
-    background-color: #0b1066;
-    top: 0;
-    width: 100%;    
-    left: 0;
-    height: 70px;
+    background-color: #27066A;
+    width: 100%;
+    min-height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
+    padding: 5px 50px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    box-sizing: border-box;
 }
-.nav-links{
+
+.logo {
+    width: 75px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nome-marca {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
     list-style: none;
     display: flex;
     gap: 30px;
     margin: 0;
     padding: 0;
 }
-.nav-links a{
-    color: #cbd5e1;
+
+.nav-links a {
+    color: #ffffff;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 17px;
     transition: color 0.3s;
 }
-.nav-links a:hover{
-    color: #00ff66;
+
+.nav-links a:hover {
+    color: #39E75F;
+}
+
+/* APRESENTAÇÃO PRINCIPAL */
+
+.hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 65px 50px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-conteudo {
+    max-width: 600px;
+}
+
+.subtitulo {
+    color: #27066A;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.titulo {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 15px 0 25px;
+}
+
+.titulo span {
+    color: #27066A;
+    display: block;
+}
+
+.hero-conteudo h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.texto-central {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #555555;
+    margin-bottom: 25px;
+}
+
+/* IMAGEM */
+
+.hero-imagem {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.hero-imagem img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 25px;
+}
+
+/* BOTÃO */
+
+.botao-home {
+    display: inline-block;
+    background-color: #27066A;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.botao-home:hover {
+    background-color: #39E75F;
+    color: #171720;
+}
+
+/* SEÇÃO DE CARDS */
+
+.explorar {
+    padding: 45px 50px;
+    text-align: center;
+    background-color: #f5f5f8;
+}
+
+.explorar h2 {
+    font-size: 30px;
+}
+
+.explorar > p {
+    color: #555555;
+    margin-bottom: 35px;
+}
+
+.cards {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: left;
+    text-decoration: none;
+    color: #171720;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #27066A;
+}
+
+.card p {
+    color: #555555;
+    line-height: 1.5;
+}
+
+.card span {
+    color: #27066A;
+    font-weight: bold;
+}
+
+/* RODAPÉ */
+
+.rodape {
+    background-color: #171720;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.rodape p {
+    margin: 0;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 850px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 40px 25px;
+    }
+
+    .hero-imagem {
+        justify-content: center;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .titulo {
+        font-size: 32px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .explorar {
+        padding: 35px 20px;
+    }
 }

@@ -3,33 +3,91 @@
     <head>
         <title>CyberGuard</title>
         <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content="CyberGuard - Proteja-se contra ameaças digitais e aprenda sobre segurança cibernética.">
+        <meta name="language" content="pt-BR">
     </head>
     <body class="fundo_do_arquivo">
-        <header>
-            <div>
-                <nav class="navbar">
-                    <ul class="nav-links">
-                        <li class="nav-links"><a class="nav-links a" href="index.html#inicio">Home</a></li>
-                        <li class="nav-links"><a class="nav-links a" href="src/ameacas.html#ameaças">Ameaças</a></li>
-                        <li class="nav-links"><a class="nav-links a" href="src/protecao.html#proteção">Proteção</a></li>
-                        <li class="nav-links"><a class="nav-links a" href="src/aprenda.html#aprenda">Aprenda</a></li>
-                        <li class="nav-links"><a class="nav-links a" href="src/centraldeajuda.html#centraldeajuda">Central</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <h1 class="titulo">CyberSecurity e a <br> 
-                Nova fronteira da <br>
-                <i>Tecnologia</i></h1>
-        </header>
-        <main>
-            <p>Aprenda a se proteger contra as ameaças cibernéticas.</p>
-            <button>
-                <a href="src/ameacas.html#ameaças">Saiba mais</a>
-            </button>
-        </main>
-        <footer>
-            <p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p>
-        </footer>
+<header>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="src/imagens/logo.png"
+                 alt="Logo CyberGuard"
+                 class="logo">
+            <span class="nome-marca">CyberGuard</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#inicio">Home</a></li>
+            <li><a href="src/ameacas.html#ameacas">Ameaças</a></li>
+            <li><a href="src/protecao.html#protecao">Proteção</a></li>
+            <li><a href="src/aprenda.html#aprenda">Aprenda</a></li>
+            <li><a href="src/central.html#central">Central</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="inicio" class="hero">
+        <div class="hero-conteudo">
+            <span class="subtitulo">
+                SEGURANÇA DIGITAL
+            </span>
+            <h1 class="titulo">
+                CyberSecurity e a
+                nova fronteira da
+                <span>Tecnologia.</span>
+            </h1>
+            <h2>Bem-vindo ao CyberGuard!</h2>
+            <p class="texto-central">
+                O CyberGuard é uma plataforma dedicada
+                à conscientização sobre segurança digital.
+                Nosso objetivo é ajudar você a identificar
+                ameaças, proteger seus dados e manter
+                sua presença online segura.
+            </p>
+            <a href="src/aprenda.html#aprenda"
+               class="botao-home">
+                Conheça nossa plataforma
+            </a>
+        </div>
+        <div class="hero-imagem">
+            <img src="src/imagens/imagem1.png"
+                 alt="Ilustração de segurança cibernética">
+        </div>
+    </section>
+    <section class="explorar">
+        <h2>Explore o CyberGuard</h2>
+        <p>Descubra o que você pode aprender em nossa plataforma.</p>
+        <div class="cards">
+            <a href="src/ameacas.html#ameacas" class="card">
+                <h3>Ameaças digitais</h3>
+                <p>Aprenda a identificar golpes e ameaças virtuais.</p>
+                <span>Saiba mais →</span>
+            </a>
+            <a href="src/protecao.html#protecao" class="card">
+                <h3>Proteção digital</h3>
+                <p>Descubra como proteger suas contas e informações.</p>
+                <span>Saiba mais →</span>
+            </a>
+            <a href="src/aprenda.html#aprenda" class="card">
+                <h3>Aprenda</h3>
+                <p>Conheça conceitos e boas práticas de segurança.</p>
+                <span>Saiba mais →</span>
+            </a>
+            <a href="src/central.html#central" class="card">
+                <h3>Central de ajuda</h3>
+                <p>Encontre orientações para situações de risco.</p>
+                <span>Saiba mais →</span>
+            </a>
+        </div>
+    </section>
+</main>
+<footer class="rodape">
+    <p>
+        &copy; <span id="ano-copyright"></span>
+        CyberGuard. Todos os direitos reservados.
+    </p>
+</footer>
         <script src="app.js"></script>
     </body>
 </html>
