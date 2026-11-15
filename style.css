@@ -42,7 +42,11 @@ body {
     font-size: 22px;
     font-weight: bold;
 }
-
+.nome-marca-segundo{
+    color:#39E75F;
+    font-size: 22px;
+    font-weight: bold;
+}
 .nav-links {
     list-style: none;
     display: flex;
