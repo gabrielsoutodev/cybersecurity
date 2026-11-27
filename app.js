@@ -1,5 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("ano-copyright").textContent = new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", function () {
+    const ano = document.getElementById("ano-copyright");
+
+    if (ano) {
+        ano.textContent = new Date().getFullYear();
+    }
 });
 
 // QUIZ 
@@ -127,7 +131,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const formInicio = $("quiz-form-inicio");
     const formRespostas = $("quiz-form-respostas");
 
+    if (!inicio || !telaPerguntas || !resultado || !formInicio || !formRespostas) {
+        return;
+    }
+
     let participante = { nome: "", email: "" };
+
+    function rolarPara(elemento, bloco) {
+        const reduzirMovimento =
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+            document.documentElement.classList.contains("movimento-reduzido");
+
+        elemento.scrollIntoView({
+            behavior: reduzirMovimento ? "auto" : "smooth",
+            block: bloco
+        });
+    }
 
     function mostrarTela(tela) {
         inicio.hidden = true;
@@ -135,7 +154,8 @@ document.addEventListener("DOMContentLoaded", function() {
         resultado.hidden = true;
 
         tela.hidden = false;
-        tela.scrollIntoView({ behavior: "smooth", block: "start" });
+        rolarPara(tela, "start");
+        tela.focus({ preventScroll: true });
     }
 
     function atualizarProgresso() {
@@ -145,6 +165,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         $("quiz-contador").textContent = `${respondidas}/10`;
         $("quiz-barra").style.width = `${respondidas * 10}%`;
+
+        const progresso = $("quiz-progresso");
+        if (progresso) {
+            progresso.setAttribute("aria-valuenow", String(respondidas));
+        }
     }
 
     function montarPerguntas() {
@@ -222,8 +247,10 @@ document.addEventListener("DOMContentLoaded", function() {
             $("quiz-erro-respostas").textContent =
                 `Responda à pergunta ${primeiraSemResposta + 1} antes de enviar.`;
 
-            document.querySelectorAll(".quiz-pergunta")[primeiraSemResposta]
-                .scrollIntoView({ behavior: "smooth", block: "center" });
+            rolarPara(
+                document.querySelectorAll(".quiz-pergunta")[primeiraSemResposta],
+                "center"
+            );
 
             return;
         }
@@ -268,11 +295,11 @@ document.addEventListener("DOMContentLoaded", function() {
             bloco.className =
                 `quiz-revisao ${acertou ? "quiz-correta" : "quiz-incorreta"}`;
 
-            const titulo = document.createElement("h4");
+            const titulo = document.createElement("h3");
             titulo.textContent = `${indice + 1}. ${item.pergunta}`;
 
             const status = document.createElement("strong");
-            status.textContent = acertou ? "✓ CORRETO" : "✗ INCORRETO";
+            status.textContent = acertou ? "Correto" : "Incorreto";
 
             const suaResposta = document.createElement("p");
             suaResposta.textContent =
@@ -308,12 +335,231 @@ document.addEventListener("DOMContentLoaded", function() {
 
         $("quiz-erro-inicio").textContent = "";
         $("quiz-erro-respostas").textContent = "";
+        $("quiz-saudacao").textContent = "";
 
         $("quiz-barra").style.width = "0";
         $("quiz-contador").textContent = "0/10";
 
+        const progresso = $("quiz-progresso");
+        if (progresso) {
+            progresso.setAttribute("aria-valuenow", "0");
+        }
+
         participante = { nome: "", email: "" };
 
         mostrarTela(inicio);
+        $("quiz-nome").focus();
     });
+})();
+
+// ACESSIBILIDADE
+
+(function () {
+    const CHAVE = "preferencias-acessibilidade";
+
+    const padrao = {
+        tamanhoFonte: 100,
+        tema: "claro",
+        espacamento: false,
+        reduzirMovimento: false,
+        destacarLinks: false
+    };
+
+    function carregarPreferencias() {
+        try {
+            const salvas = JSON.parse(localStorage.getItem(CHAVE) || "{}");
+            return { ...padrao, ...salvas };
+        } catch (erro) {
+            return { ...padrao };
+        }
+    }
+
+    let preferencias = carregarPreferencias();
+
+    function salvarPreferencias() {
+        try {
+            localStorage.setItem(CHAVE, JSON.stringify(preferencias));
+        } catch (erro) {
+            // Sem localStorage, as preferências valem só nesta página.
+        }
+    }
+
+    function aplicarPreferencias() {
+        const raiz = document.documentElement;
+
+        raiz.style.fontSize = preferencias.tamanhoFonte + "%";
+        raiz.dataset.tema = preferencias.tema;
+        raiz.classList.toggle("texto-espacado", preferencias.espacamento);
+        raiz.classList.toggle("movimento-reduzido", preferencias.reduzirMovimento);
+        raiz.classList.toggle("links-destacados", preferencias.destacarLinks);
+
+        document.querySelectorAll(".botao-tema").forEach(function (botao) {
+            botao.setAttribute(
+                "aria-pressed",
+                String(botao.dataset.tema === preferencias.tema)
+            );
+        });
+
+        document.querySelectorAll(".botao-opcao").forEach(function (botao) {
+            botao.setAttribute(
+                "aria-pressed",
+                String(Boolean(preferencias[botao.dataset.opcao]))
+            );
+        });
+
+        const valorFonte = document.getElementById("valor-fonte");
+        if (valorFonte) {
+            valorFonte.textContent = preferencias.tamanhoFonte + "%";
+        }
+
+        salvarPreferencias();
+    }
+
+    function montarWidget() {
+        document.body.insertAdjacentHTML("beforeend", `
+            <div class="acessibilidade">
+                <button id="botao-acessibilidade" class="botao-acessibilidade" type="button"
+                        aria-expanded="false" aria-controls="menu-acessibilidade"
+                        aria-label="Abrir opções de acessibilidade">
+                    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"
+                         focusable="false" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="4" r="2"></circle>
+                        <path d="M4 8h16M12 8v6M8 21l4-7 4 7"></path>
+                    </svg>
+                </button>
+
+                <section id="menu-acessibilidade" class="painel-acessibilidade" hidden
+                         aria-label="Opções de acessibilidade">
+                    <h2>Acessibilidade</h2>
+
+                    <div class="grupo-acessibilidade">
+                        <span class="rotulo-grupo" id="rotulo-fonte">Tamanho do texto</span>
+                        <div class="linha-botoes" role="group" aria-labelledby="rotulo-fonte">
+                            <button class="botao-fonte" type="button"
+                                    data-fonte="diminuir" aria-label="Diminuir fonte">A−</button>
+                            <button class="botao-fonte" type="button"
+                                    data-fonte="restaurar" aria-label="Restaurar fonte">A</button>
+                            <button class="botao-fonte" type="button"
+                                    data-fonte="aumentar" aria-label="Aumentar fonte">A+</button>
+                            <span id="valor-fonte" class="valor-fonte" aria-live="polite">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="grupo-acessibilidade">
+                        <span class="rotulo-grupo" id="rotulo-tema">Tema</span>
+                        <div class="linha-botoes" role="group" aria-labelledby="rotulo-tema">
+                            <button class="botao-tema" type="button"
+                                    data-tema="claro" aria-pressed="true">Claro</button>
+                            <button class="botao-tema" type="button"
+                                    data-tema="escuro" aria-pressed="false">Escuro</button>
+                            <button class="botao-tema" type="button"
+                                    data-tema="contraste" aria-pressed="false">Alto contraste</button>
+                        </div>
+                    </div>
+
+                    <div class="grupo-acessibilidade" role="group" aria-label="Outras opções">
+                        <button class="botao-opcao" type="button"
+                                data-opcao="espacamento" aria-pressed="false">
+                            Espaçamento de texto
+                        </button>
+                        <button class="botao-opcao" type="button"
+                                data-opcao="reduzirMovimento" aria-pressed="false">
+                            Reduzir animações
+                        </button>
+                        <button class="botao-opcao" type="button"
+                                data-opcao="destacarLinks" aria-pressed="false">
+                            Destacar links
+                        </button>
+                    </div>
+
+                    <button class="botao-restaurar" type="button" data-restaurar>
+                        Restaurar padrões
+                    </button>
+                </section>
+            </div>
+        `);
+
+        const botao = document.getElementById("botao-acessibilidade");
+        const painel = document.getElementById("menu-acessibilidade");
+
+        function abrirPainel() {
+            botao.setAttribute("aria-expanded", "true");
+            botao.setAttribute("aria-label", "Fechar opções de acessibilidade");
+            painel.hidden = false;
+
+            const primeiro = painel.querySelector("button");
+            if (primeiro) {
+                primeiro.focus();
+            }
+        }
+
+        function fecharPainel(devolverFoco) {
+            botao.setAttribute("aria-expanded", "false");
+            botao.setAttribute("aria-label", "Abrir opções de acessibilidade");
+            painel.hidden = true;
+
+            if (devolverFoco) {
+                botao.focus();
+            }
+        }
+
+        botao.addEventListener("click", function () {
+            if (painel.hidden) {
+                abrirPainel();
+            } else {
+                fecharPainel(true);
+            }
+        });
+
+        document.addEventListener("click", function (evento) {
+            if (!painel.hidden && !evento.target.closest(".acessibilidade")) {
+                fecharPainel(false);
+            }
+        });
+
+        document.addEventListener("keydown", function (evento) {
+            if (evento.key === "Escape" && !painel.hidden) {
+                fecharPainel(true);
+            }
+        });
+
+        painel.addEventListener("click", function (evento) {
+            const botaoClicado = evento.target.closest("button");
+            if (!botaoClicado) {
+                return;
+            }
+
+            if (botaoClicado.dataset.fonte === "aumentar") {
+                preferencias.tamanhoFonte = Math.min(150, preferencias.tamanhoFonte + 10);
+            }
+
+            if (botaoClicado.dataset.fonte === "diminuir") {
+                preferencias.tamanhoFonte = Math.max(80, preferencias.tamanhoFonte - 10);
+            }
+
+            if (botaoClicado.dataset.fonte === "restaurar") {
+                preferencias.tamanhoFonte = 100;
+            }
+
+            if (botaoClicado.dataset.tema) {
+                preferencias.tema = botaoClicado.dataset.tema;
+            }
+
+            if (botaoClicado.dataset.opcao) {
+                preferencias[botaoClicado.dataset.opcao] =
+                    !preferencias[botaoClicado.dataset.opcao];
+            }
+
+            if (botaoClicado.hasAttribute("data-restaurar")) {
+                preferencias = { ...padrao };
+            }
+
+            aplicarPreferencias();
+        });
+
+        aplicarPreferencias();
+    }
+
+    montarWidget();
 })();

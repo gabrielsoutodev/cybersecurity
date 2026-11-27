@@ -14,16 +14,16 @@
 <body class="pagina-quiz">
 
 <header>
-    <nav class="navbar">
-        <div class="logo-container">
+    <nav class="menu-principal">
+        <div class="marca">
             <img src="imagens/logo.png" alt="Logo CyberGuard" class="logo">
             <h3>
-                <span class="nome-marca">Cyber</span><span class="nome-marca-segundo">Guard</span>
+                <span class="nome-marca">Cyber</span><span class="nome-marca-destaque">Guard</span>
             </h3>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="../index.html#inicio">Home</a></li>
+        <ul class="links-menu">
+            <li><a href="../index.html#inicio">Início</a></li>
             <li><a href="ameacas.html#ameacas">Ameaças</a></li>
             <li><a href="protecao.html#protecao">Proteção</a></li>
             <li><a href="aprenda.html#aprenda">Aprenda</a></li>
@@ -33,7 +33,7 @@
     </nav>
 </header>
 
-<main class="quiz-container">
+<main id="quiz" class="conteudo-quiz">
 
     <div class="quiz-cabecalho">
         <span class="quiz-etiqueta">[ CYBERGUARD_SYSTEM ]</span>
@@ -41,10 +41,10 @@
         <p>Teste seus conhecimentos e descubra como se proteger no mundo digital.</p>
     </div>
 
-    <section id="quiz-inicio" class="quiz-painel">
-        <img src="imagens/logo.png" alt="Logo CyberGuard" class="quiz-logo">
+    <section id="quiz-inicio" class="quiz-painel" tabindex="-1">
+        <img src="imagens/logo.png" alt="Logo CyberGuard" class="logo-quiz">
 
-        <span class="quiz-etiqueta" style="color:#27066A;display:block;text-align:center">
+        <span class="quiz-etiqueta quiz-etiqueta-painel">
             [ IDENTIFICAÇÃO DO PARTICIPANTE ]
         </span>
 
@@ -57,11 +57,11 @@
 
         <form id="quiz-form-inicio">
             <label class="quiz-campo" for="quiz-nome">NOME COMPLETO</label>
-            <input class="quiz-input" id="quiz-nome" type="text"
+            <input class="entrada-quiz" id="quiz-nome" type="text"
                    placeholder="Digite seu nome completo" required autocomplete="name">
 
             <label class="quiz-campo" for="quiz-email">E-MAIL</label>
-            <input class="quiz-input" id="quiz-email" type="email"
+            <input class="entrada-quiz" id="quiz-email" type="email"
                    placeholder="Digite seu e-mail" required autocomplete="email">
 
             <p id="quiz-erro-inicio" class="quiz-erro" aria-live="polite"></p>
@@ -70,13 +70,14 @@
         </form>
     </section>
 
-    <section id="quiz-perguntas" class="quiz-painel" hidden>
-        <div class="quiz-status">
+    <section id="quiz-perguntas" class="quiz-painel" tabindex="-1" hidden>
+        <div class="status-quiz">
             <span>MISSÃO EM ANDAMENTO</span>
             <span id="quiz-contador">0/10</span>
         </div>
 
-        <div class="quiz-trilho">
+        <div class="quiz-trilho" id="quiz-progresso" role="progressbar"
+             aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
             <div id="quiz-barra"></div>
         </div>
 
@@ -92,8 +93,8 @@
         </form>
     </section>
 
-    <section id="quiz-resultado" class="quiz-painel" hidden>
-        <span class="quiz-etiqueta" style="color:#27066A">
+    <section id="quiz-resultado" class="quiz-painel" tabindex="-1" hidden>
+        <span class="quiz-etiqueta quiz-etiqueta-painel">
             [ RELATÓRIO FINAL ]
         </span>
 
