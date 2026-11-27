@@ -41,12 +41,31 @@
                     </a>
                 </div>
 
-                <div class="hero-imagem">
-                    <img
-                        src="imagens/protecao-autenticacao.svg"
-                        alt="Ilustração de cadeado e proteção por senha"
-                    >
-                </div>
+                <section class="escudo" aria-labelledby="titulo-escudo" hidden>
+                    <h2 id="titulo-escudo">Monte seu Escudo Digital</h2>
+
+                    <div class="escudo-forma" aria-hidden="true">
+                        <div class="escudo-camadas">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                        <span class="escudo-cadeado"></span>
+                    </div>
+
+                    <div class="escudo-botoes" role="group" aria-label="Camadas de proteção">
+                        <button type="button" aria-pressed="false"
+                                data-dica="Use uma senha diferente para cada conta.">Senhas</button>
+                        <button type="button" aria-pressed="false"
+                                data-dica="Atualizações corrigem falhas nos seus dispositivos.">Atualizações</button>
+                        <button type="button" aria-pressed="false"
+                                data-dica="Confira alertas inesperados pelo site ou app oficial.">Links seguros</button>
+                        <button type="button" aria-pressed="false" data-duas-etapas
+                                data-dica="Uma segunda etapa ajuda a proteger sua conta mesmo se sua senha vazar.">Duas etapas</button>
+                    </div>
+
+                    <p class="escudo-status" role="status">
+                        0 de 4 camadas. Escolha uma proteção para começar.
+                    </p>
+                </section>
             </div>
 
             <div class="explorar">
@@ -105,6 +124,144 @@
 
             #desafio-protecao [hidden] {
                 display: none;
+            }
+
+            .escudo {
+                min-width: 0;
+                padding: clamp(18px, 3vw, 32px);
+                border-radius: 25px;
+                background: radial-gradient(ellipse at 50% 35%, #3f1883, #1d054f 76%);
+                color: #fff;
+                text-align: center;
+                box-shadow: 0 12px 32px rgba(39, 6, 106, .22);
+            }
+
+            .escudo h2 {
+                margin: 0 0 15px;
+            }
+
+            .escudo-forma {
+                position: relative;
+                display: grid;
+                place-items: center;
+                width: min(65%, 180px);
+                aspect-ratio: 1;
+                margin: 0 auto 18px;
+                filter: drop-shadow(0 0 10px #8052ce);
+                transition: filter .25s ease;
+            }
+
+            .escudo[data-completo] .escudo-forma {
+                filter: drop-shadow(0 0 22px #bca5f5);
+            }
+
+            .escudo-camadas {
+                position: absolute;
+                inset: 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3px;
+                clip-path: polygon(
+                    50% 0, 94% 16%, 89% 60%, 73% 82%,
+                    50% 100%, 27% 82%, 11% 60%, 6% 16%
+                );
+            }
+
+            .escudo-camadas span {
+                background: #573691;
+                transition: background-color .25s ease;
+            }
+
+            .escudo-camadas .ativa {
+                background: #bca5f5;
+            }
+
+            .escudo-cadeado {
+                position: relative;
+                width: 36px;
+                height: 29px;
+                margin-top: 13px;
+                border-radius: 5px;
+                background: #fff;
+            }
+
+            .escudo-cadeado::before {
+                content: "";
+                position: absolute;
+                left: 7px;
+                bottom: 100%;
+                width: 22px;
+                height: 17px;
+                box-sizing: border-box;
+                border: 4px solid #fff;
+                border-bottom: 0;
+                border-radius: 15px 15px 0 0;
+                transform: translateY(-5px);
+                transition: transform .2s ease;
+            }
+
+            .escudo[data-cadeado-fechado] .escudo-cadeado::before {
+                transform: translateY(0);
+            }
+
+            .escudo-cadeado::after {
+                content: "";
+                position: absolute;
+                inset: 9px 15px;
+                border-radius: 5px;
+                background: #27066a;
+            }
+
+            .escudo-botoes {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+            }
+
+            .escudo-botoes button {
+                min-height: 44px;
+                padding: 10px 5px;
+                border: 1px solid #bca5f5;
+                border-radius: 10px;
+                background: #27066a;
+                color: #fff;
+                font: inherit;
+                cursor: pointer;
+                transition: transform .18s ease, background-color .18s ease;
+            }
+
+            .escudo-botoes button:hover {
+                background: #1d054f;
+                transform: translateY(-2px);
+            }
+
+            .escudo-botoes button[aria-pressed="true"] {
+                background: #bca5f5;
+                color: #1d054f;
+            }
+
+            .escudo-botoes button:focus-visible {
+                outline: 2px solid #fff;
+                outline-offset: 2px;
+            }
+
+            .escudo-status {
+                min-height: 3em;
+                margin: 14px 0 0;
+                line-height: 1.45;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .escudo-forma,
+                .escudo-camadas span,
+                .escudo-cadeado::before,
+                .escudo-botoes button {
+                    transition: none;
+                }
+
+                .escudo-botoes button:hover {
+                    transform: none;
+                }
             }
         </style>
 
@@ -250,6 +407,48 @@
 
                 exibirCenario();
                 cartao.hidden = false;
+            })();
+        </script>
+
+        <script>
+            (() => {
+                const escudo = document.querySelector(".escudo");
+                if (!escudo) return;
+
+                const botoes = [...escudo.querySelectorAll(".escudo-botoes button")];
+                const camadas = escudo.querySelectorAll(".escudo-camadas span");
+                const status = escudo.querySelector(".escudo-status");
+                const duasEtapas = escudo.querySelector("[data-duas-etapas]");
+
+                botoes.forEach((botao, indice) => {
+                    botao.addEventListener("click", () => {
+                        const ativada = botao.getAttribute("aria-pressed") === "false";
+
+                        botao.setAttribute("aria-pressed", String(ativada));
+                        camadas[indice].classList.toggle("ativa", ativada);
+                        escudo.toggleAttribute(
+                            "data-cadeado-fechado",
+                            duasEtapas.getAttribute("aria-pressed") === "true"
+                        );
+
+                        const total = botoes.filter(
+                            opcao => opcao.getAttribute("aria-pressed") === "true"
+                        ).length;
+
+                        const completo = total === botoes.length;
+                        escudo.toggleAttribute("data-completo", completo);
+
+                        const abertura = completo ? "Escudo completo! " : "";
+                        const dica = ativada
+                            ? botao.dataset.dica
+                            : "Camada desativada na demonstração.";
+
+                        status.textContent =
+                            abertura + total + " de " + botoes.length + " camadas. " + dica;
+                    });
+                });
+
+                escudo.hidden = false;
             })();
         </script>
 
