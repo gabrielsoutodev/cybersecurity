@@ -270,3 +270,40 @@ body {
         padding: 35px 20px;
     }
 }
+
+/* Botões exclusivos da página Proteção */
+#proteção .botao-home,
+#desafio-protecao .botao-home {
+    background-color: #27066A;
+    color: #ffffff;
+    transition: background-color 180ms ease, color 180ms ease,
+                box-shadow 180ms ease, transform 180ms ease;
+}
+
+#proteção .botao-home:hover,
+#proteção .botao-home:focus-visible,
+#desafio-protecao .botao-home:hover,
+#desafio-protecao .botao-home:focus-visible {
+    background-color: #1D054F;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(29, 5, 79, 0.28);
+    transform: translateY(-2px);
+}
+
+#desafio-protecao button[aria-pressed="true"] {
+    box-shadow: inset 0 0 0 3px #BCA5F5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #proteção .botao-home,
+    #desafio-protecao .botao-home {
+        transition: none;
+    }
+
+    #proteção .botao-home:hover,
+    #proteção .botao-home:focus-visible,
+    #desafio-protecao .botao-home:hover,
+    #desafio-protecao .botao-home:focus-visible {
+        transform: none;
+    }
+}

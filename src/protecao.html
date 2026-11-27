@@ -26,15 +26,54 @@
                 </ul>
             </nav>
         </header>
-        <section id="proteção">
-            <h2>Proteção Digital</h2>
-            <p>Proteger-se contra ameaças digitais é essencial para manter a segurança online. Aqui estão algumas medidas que você pode tomar:</p>
-            <ul>
-                <li><strong>Use senhas fortes:</strong> Crie senhas complexas e únicas para cada conta.</li>
-                <li><strong>Atualize seu software:</strong> Mantenha seus sistemas e aplicativos atualizados para corrigir vulnerabilidades.</li>
-                <li><strong>Evite clicar em links suspeitos:</strong> Tenha cuidado com e-mails e mensagens de fontes desconhecidas.</li>
-                <li><strong>Use autenticação de dois fatores:</strong> Adicione uma camada extra de segurança às suas contas.</li>
-            </ul>
+        <section id="proteção" aria-labelledby="titulo-protecao">
+            <div class="hero">
+                <div class="hero-conteudo">
+                    <h2 id="titulo-protecao" class="titulo">
+                        <span>Proteção Digital</span>
+                    </h2>
+                    <p class="texto-central">
+                        Proteja suas contas e dispositivos com quatro hábitos simples
+                        que você pode adotar hoje.
+                    </p>
+                    <a class="botao-home" href="#desafio-protecao">
+                        Ir para o desafio
+                    </a>
+                </div>
+
+                <div class="hero-imagem">
+                    <img
+                        src="imagens/protecao-autenticacao.svg"
+                        alt="Ilustração de cadeado e proteção por senha"
+                    >
+                </div>
+            </div>
+
+            <div class="explorar">
+                <h2>Quatro hábitos para se proteger</h2>
+
+                <div class="cards">
+                    <article class="card">
+                        <h3>Senhas únicas</h3>
+                        <p>Use uma senha longa e diferente para cada conta.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Atualizações</h3>
+                        <p>Ative as atualizações automáticas do celular, do computador e dos aplicativos.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Links suspeitos</h3>
+                        <p>Se receber um alerta inesperado, confira pelo site ou aplicativo oficial.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Verificação em duas etapas</h3>
+                        <p>Ative a proteção extra nas suas contas, começando pelo e-mail.</p>
+                    </article>
+                </div>
+            </div>
         </section>
 
         <style>
@@ -61,7 +100,7 @@
             }
 
             #desafio-protecao button[aria-pressed="true"] {
-                box-shadow: inset 0 0 0 3px #39E75F;
+                box-shadow: inset 0 0 0 3px #BCA5F5;
             }
 
             #desafio-protecao [hidden] {
