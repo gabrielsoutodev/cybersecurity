@@ -1,4 +1,4 @@
-/* CONFIGURAÇÕES GERAIS */
+
 
 :root {
     color-scheme: light;
@@ -108,13 +108,13 @@ body {
 
 .nome-marca {
     color: var(--texto-menu);
-    font-size: 1.375rem;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .nome-marca-destaque {
     color: var(--destaque);
-    font-size: 1.375rem;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -129,7 +129,7 @@ body {
 .links-menu a {
     color: var(--texto-menu);
     text-decoration: none;
-    font-size: 1.0625rem;
+    font-size: 17px;
     transition: color 0.3s;
 }
 
@@ -137,7 +137,7 @@ body {
     color: var(--destaque);
 }
 
-/* APRESENTAÇÃO PRINCIPAL */
+
 
 .destaque {
     max-width: 1400px;
@@ -145,7 +145,7 @@ body {
     padding: 65px 50px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, calc((100% - 40px) / 2));
     align-items: center;
     gap: 40px;
 }
@@ -156,13 +156,13 @@ body {
 
 .etiqueta-secao {
     color: var(--primaria);
-    font-size: 0.875rem;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 2px;
 }
 
 .titulo-principal {
-    font-size: 2.625rem;
+    font-size: 42px;
     font-weight: 800;
     line-height: 1.15;
     margin: 15px 0 25px;
@@ -174,12 +174,12 @@ body {
 }
 
 .conteudo-destaque h2 {
-    font-size: 1.5625rem;
+    font-size: 25px;
     margin-bottom: 15px;
 }
 
 .texto-introducao {
-    font-size: 1.0625rem;
+    font-size: 17px;
     line-height: 1.7;
     color: var(--texto-suave);
     margin-bottom: 25px;
@@ -208,7 +208,7 @@ body {
     color: var(--fundo);
     text-decoration: none;
     padding: 14px 25px;
-    font-size: 1rem;
+    font-size: 16px;
     border-radius: 10px;
     transition: 0.3s;
 }
@@ -227,7 +227,7 @@ body {
 }
 
 .secao-explorar h2 {
-    font-size: 1.875rem;
+    font-size: 30px;
 }
 
 .secao-explorar > p {
@@ -241,7 +241,7 @@ body {
     padding: 0 20px;
 
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, calc((100% - 60px) / 4));
     gap: 20px;
 }
 
@@ -291,12 +291,12 @@ body {
     margin: 0;
 }
 
-/* RESPONSIVIDADE */
+
 
 @media (max-width: 850px) {
 
     .destaque {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
         padding: 40px 25px;
     }
 
@@ -305,7 +305,7 @@ body {
     }
 
     .cartoes {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, calc((100% - 20px) / 2));
     }
 
     .menu-principal {
@@ -317,7 +317,7 @@ body {
     }
 
     .links-menu a {
-        font-size: 0.875rem;
+        font-size: 14px;
     }
 }
 
@@ -334,11 +334,11 @@ body {
     }
 
     .titulo-principal {
-        font-size: 2rem;
+        font-size: 32px;
     }
 
     .cartoes {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
     }
 
     .secao-explorar {
@@ -346,7 +346,6 @@ body {
     }
 }
 
-/* Botões exclusivos da página Proteção */
 #protecao .botao-home,
 #desafio-protecao .botao-home {
     background-color: #27066A;
@@ -383,11 +382,11 @@ body {
     }
 }
 
-/* Estilos compartilhados pelas páginas que ainda usam as classes antigas */
+
 .aprenda .subtitulo,
 #protecao .subtitulo {
     color: var(--primaria);
-    font-size: 0.875rem;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 2px;
 }
@@ -395,7 +394,7 @@ body {
 .aprenda .titulo,
 #protecao .titulo {
     margin: 15px 0 25px;
-    font-size: 2.625rem;
+    font-size: 42px;
     font-weight: 800;
     line-height: 1.15;
 }
@@ -409,13 +408,13 @@ body {
 .aprenda .texto-central,
 #protecao .texto-central {
     color: var(--texto-suave);
-    font-size: 1.0625rem;
+    font-size: 17px;
     line-height: 1.7;
 }
 
 #protecao .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: repeat(2, calc((100% - 40px) / 2));
     align-items: center;
     gap: 40px;
     max-width: 1400px;
@@ -441,7 +440,7 @@ body {
 
 #protecao .cards {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, calc((100% - 60px) / 4));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -478,7 +477,7 @@ body {
     border-radius: 10px;
     background: var(--primaria);
     color: #fff;
-    font-size: 1rem;
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -500,7 +499,7 @@ body {
 #desafio-protecao .card {
     max-width: 720px;
     margin: 0 auto;
-    padding: clamp(20px, 4vw, 32px);
+    padding: 32px;
     border-radius: 12px;
     background: var(--superficie);
     color: var(--texto);
@@ -563,12 +562,12 @@ body {
 
 @media (max-width: 850px) {
     #protecao .hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
         padding: 40px 25px;
     }
 
     #protecao .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, calc((100% - 20px) / 2));
     }
 
     #desafio-protecao.explorar {
@@ -579,11 +578,11 @@ body {
 @media (max-width: 550px) {
     .aprenda .titulo,
     #protecao .titulo {
-        font-size: 2rem;
+        font-size: 32px;
     }
 
     #protecao .cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
     }
 
     #protecao .explorar {
@@ -595,7 +594,7 @@ body {
     }
 }
 
-/* PÁGINA QUIZ */
+
 
 .pagina-quiz {
     background: var(--fundo);
@@ -644,7 +643,7 @@ body {
 
 .quiz-etiqueta {
     color: var(--destaque-texto);
-    font: bold 0.8125rem monospace;
+    font: bold 13px monospace;
     letter-spacing: 2px;
 }
 
@@ -656,7 +655,7 @@ body {
 
 .quiz-cabecalho h1 {
     color: var(--texto);
-    font: 900 clamp(2.125rem, 6vw, 3.4375rem) monospace;
+    font: 900 55px monospace;
     text-shadow: 4px 4px var(--primaria);
 }
 
@@ -673,7 +672,7 @@ body {
     background: var(--superficie);
     color: var(--texto);
     border: 4px solid var(--destaque);
-    padding: clamp(20px, 5vw, 40px);
+    padding: 40px;
     box-shadow: 8px 8px var(--primaria);
     margin: 0 8px 12px 0;
 }
@@ -697,7 +696,7 @@ body {
 .quiz-painel h2 {
     text-align: center;
     color: var(--primaria);
-    font: bold clamp(1.375rem, 4vw, 1.875rem) monospace;
+    font: bold 30px monospace;
     margin: 18px 0;
 }
 
@@ -711,7 +710,7 @@ body {
     display: block;
     margin: 18px 0 7px;
     color: var(--primaria);
-    font: bold 0.8125rem monospace;
+    font: bold 13px monospace;
 }
 
 .entrada-quiz {
@@ -742,7 +741,7 @@ body {
     color: var(--fundo);
     border: 3px solid var(--texto);
     box-shadow: 5px 5px var(--destaque);
-    font: bold 0.9375rem monospace;
+    font: bold 15px monospace;
     cursor: pointer;
 }
 
@@ -761,7 +760,7 @@ body {
     display: flex;
     justify-content: space-between;
     color: var(--primaria);
-    font: bold 0.8125rem monospace;
+    font: bold 13px monospace;
 }
 
 .quiz-trilho {
@@ -830,11 +829,11 @@ body {
 #quiz-nota {
     display: block;
     color: var(--destaque-texto);
-    font: bold 3.4375rem monospace;
+    font: bold 55px monospace;
 }
 
 #quiz-percentual {
-    font-size: 1.375rem;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -883,7 +882,7 @@ body {
     }
 }
 
-/* ACESSIBILIDADE */
+
 
 .acessibilidade {
     position: fixed;
@@ -911,10 +910,11 @@ body {
 }
 
 .painel-acessibilidade {
-    position: absolute;
-    right: 0;
-    bottom: calc(100% + 12px);
-    width: min(320px, calc(100vw - 40px));
+    position: fixed;
+    right: 20px;
+    bottom: calc(84px + env(safe-area-inset-bottom));
+    width: 320px;
+    max-width: calc(100% - 40px);
     max-height: min(70vh, 560px);
     overflow-y: auto;
     background: var(--superficie);
@@ -932,7 +932,7 @@ body {
 .painel-acessibilidade h2 {
     margin: 0 0 14px;
     color: var(--primaria);
-    font-size: 1.125rem;
+    font-size: 18px;
 }
 
 .grupo-acessibilidade {
@@ -943,7 +943,7 @@ body {
 .rotulo-grupo {
     display: block;
     margin-bottom: 8px;
-    font-size: 0.8125rem;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -973,7 +973,7 @@ body {
 
 .botao-tema {
     padding: 7px 10px;
-    font-size: 0.8125rem;
+    font-size: 13px;
 }
 
 .botao-opcao {
@@ -981,7 +981,7 @@ body {
     margin-top: 6px;
     padding: 10px;
     text-align: left;
-    font-size: 0.875rem;
+    font-size: 14px;
 }
 
 .botao-tema[aria-pressed="true"],
@@ -995,12 +995,12 @@ body {
     width: 100%;
     margin-top: 12px;
     padding: 10px;
-    font-size: 0.875rem;
+    font-size: 14px;
 }
 
 .valor-fonte {
     margin-left: auto;
-    font-size: 0.8125rem;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -1012,7 +1012,7 @@ input:focus-visible,
     outline-offset: 2px;
 }
 
-/* OPÇÕES DE ACESSIBILIDADE */
+
 
 html.texto-espacado body {
     line-height: 1.9;
@@ -1094,7 +1094,7 @@ html.links-destacados a {
 
 .central-topo h1 {
     margin: 0 0 12px;
-    font-size: 2.625rem;
+    font-size: 42px;
 }
 
 .central-topo p {
@@ -1139,7 +1139,7 @@ html.links-destacados a {
 
 .central-casos {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, calc((100% - 16px) / 2));
     align-items: start;
     gap: 16px;
 }
@@ -1203,10 +1203,21 @@ html.links-destacados a {
     }
 
     .central-topo h1 {
-        font-size: 2rem;
+        font-size: 32px;
     }
 
     .central-casos {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
     }
+}
+
+@media (max-width: 850px) {
+    #desafio-protecao .card { padding: 24px; }
+    .quiz-cabecalho h1 { font-size: 44px; }
+    .quiz-painel h2 { font-size: 26px; }
+}
+@media (max-width: 550px) {
+    #desafio-protecao .card { padding: 20px; }
+    .quiz-cabecalho h1 { font-size: 34px; }
+    .quiz-painel h2 { font-size: 22px; }
 }
