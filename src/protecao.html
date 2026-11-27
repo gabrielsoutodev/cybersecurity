@@ -36,6 +36,184 @@
                 <li><strong>Use autenticação de dois fatores:</strong> Adicione uma camada extra de segurança às suas contas.</li>
             </ul>
         </section>
+
+        <style>
+            #desafio-protecao .card {
+                max-width: 720px;
+                margin-inline: auto;
+            }
+
+            #desafio-protecao .card:hover {
+                transform: none;
+            }
+
+            #desafio-protecao .opcoes {
+                display: grid;
+                gap: 10px;
+                margin-block: 20px;
+            }
+
+            #desafio-protecao button {
+                border: 0;
+                font-family: inherit;
+                text-align: left;
+                cursor: pointer;
+            }
+
+            #desafio-protecao button[aria-pressed="true"] {
+                box-shadow: inset 0 0 0 3px #39E75F;
+            }
+
+            #desafio-protecao [hidden] {
+                display: none;
+            }
+        </style>
+
+        <section id="desafio-protecao" class="explorar" aria-labelledby="titulo-desafio">
+            <h2 id="titulo-desafio">Desafio de Proteção</h2>
+            <p>Vote na atitude que você tomaria em cada situação.</p>
+
+            <noscript><p>Ative o JavaScript para participar do desafio.</p></noscript>
+
+            <div class="card" id="cartao-desafio" hidden>
+                <div id="cenario-protecao">
+                    <span class="subtitulo" id="progresso-protecao"></span>
+                    <h3 id="titulo-cenario" tabindex="-1"></h3>
+                    <p id="descricao-cenario"></p>
+
+                    <div class="opcoes" role="group" aria-labelledby="titulo-cenario">
+                        <button class="botao-home" type="button" aria-pressed="false"></button>
+                        <button class="botao-home" type="button" aria-pressed="false"></button>
+                        <button class="botao-home" type="button" aria-pressed="false"></button>
+                    </div>
+
+                    <p role="status"><strong id="feedback-protecao"></strong></p>
+                    <button class="botao-home" type="button" id="proximo-cenario" hidden></button>
+                </div>
+
+                <div id="resumo-protecao" hidden>
+                    <h3 id="titulo-resumo" tabindex="-1">Três atitudes para se proteger</h3>
+                    <ul>
+                        <li>Confira alertas pelo aplicativo oficial do banco.</li>
+                        <li>Use senhas diferentes e ative a verificação em duas etapas.</li>
+                        <li>Confirme pedidos de Pix por um canal que você já conhece.</li>
+                    </ul>
+                    <button class="botao-home" type="button" id="reiniciar-desafio">
+                        Jogar novamente
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            (() => {
+                const cenarios = [
+                    {
+                        titulo: "Seu banco mandou um alerta?",
+                        descricao: "Uma mensagem diz que sua conta foi bloqueada e pede que você clique em um link. O que você faz?",
+                        opcoes: [
+                            ["Abro o link para conferir.",
+                             "O link pode levar a uma página falsa. Confira pelo aplicativo oficial do banco."],
+                            ["Respondo para pedir detalhes.",
+                             "O remetente pode se passar pelo banco. Confira pelo aplicativo oficial."],
+                            ["Confiro pelo aplicativo oficial do banco.",
+                             "Boa decisão. Pelo app oficial, você pode conferir se existe um alerta real."]
+                        ]
+                    },
+                    {
+                        titulo: "Sua senha apareceu em um vazamento",
+                        descricao: "Você descobriu que uma senha vazou e lembrou que usa a mesma senha em outras contas. O que você faz?",
+                        opcoes: [
+                            ["Troco a senha só na conta que avisou.",
+                             "As outras contas continuam expostas. Troque a senha em todas as contas em que você a reutilizou."],
+                            ["Troco a senha em todas as contas em que a reutilizei.",
+                             "Boa decisão. Use uma senha diferente para cada conta e ative a verificação em duas etapas."],
+                            ["Continuo usando a mesma senha.",
+                             "Quem tiver a senha vazada pode tentar usá-la nas suas contas. Troque-a em todas as contas afetadas."]
+                        ]
+                    },
+                    {
+                        titulo: "Um conhecido pediu Pix com urgência",
+                        descricao: "Uma mensagem de um número novo diz ser de alguém que você conhece e pede dinheiro com urgência. O que você faz?",
+                        opcoes: [
+                            ["Ligo para o número que eu já tinha salvo.",
+                             "Boa decisão. Ligue para o contato que você conhece e só transfira depois de confirmar."],
+                            ["Faço o Pix na hora.",
+                             "A urgência pode fazer parte do golpe. Confirme com a pessoa por um canal conhecido antes de transferir."],
+                            ["Peço confirmação pelo mesmo número.",
+                             "Quem enviou a mensagem também pode responder por esse número. Use um contato que você já tinha salvo."]
+                        ]
+                    }
+                ];
+
+                const cartao = document.getElementById("cartao-desafio");
+                const cenario = document.getElementById("cenario-protecao");
+                const progresso = document.getElementById("progresso-protecao");
+                const titulo = document.getElementById("titulo-cenario");
+                const descricao = document.getElementById("descricao-cenario");
+                const feedback = document.getElementById("feedback-protecao");
+                const proximo = document.getElementById("proximo-cenario");
+                const resumo = document.getElementById("resumo-protecao");
+                const tituloResumo = document.getElementById("titulo-resumo");
+                const reiniciar = document.getElementById("reiniciar-desafio");
+                const botoes = cenario.querySelectorAll("[aria-pressed]");
+                let indice = 0;
+
+                function exibirCenario() {
+                    const atual = cenarios[indice];
+
+                    resumo.hidden = true;
+                    cenario.hidden = false;
+                    progresso.textContent = (indice + 1) + " de " + cenarios.length;
+                    titulo.textContent = atual.titulo;
+                    descricao.textContent = atual.descricao;
+                    feedback.textContent = "";
+                    proximo.hidden = true;
+                    proximo.textContent = indice < cenarios.length - 1
+                        ? "Próximo cenário"
+                        : "Ver resumo";
+
+                    botoes.forEach((botao, posicao) => {
+                        botao.textContent = atual.opcoes[posicao][0];
+                        botao.setAttribute("aria-pressed", "false");
+                    });
+                }
+
+                botoes.forEach((botao, posicao) => {
+                    botao.addEventListener("click", () => {
+                        botoes.forEach((opcao) => {
+                            opcao.setAttribute("aria-pressed", String(opcao === botao));
+                        });
+                        feedback.textContent = cenarios[indice].opcoes[posicao][1];
+                        proximo.hidden = false;
+                    });
+                });
+
+                proximo.addEventListener("click", () => {
+                    indice += 1;
+
+                    if (indice === cenarios.length) {
+                        cenario.hidden = true;
+                        resumo.hidden = false;
+                        tituloResumo.focus();
+                        return;
+                    }
+
+                    exibirCenario();
+                    titulo.focus();
+                });
+
+                reiniciar.addEventListener("click", () => {
+                    indice = 0;
+                    exibirCenario();
+                    titulo.focus();
+                });
+
+                exibirCenario();
+                cartao.hidden = false;
+            })();
+        </script>
+
         <footer>
             <p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p>
         </footer>
