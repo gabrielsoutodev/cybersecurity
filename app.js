@@ -137,6 +137,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let participante = { nome: "", email: "" };
 
+    const CHAVE_QUIZ = "quiz-cyberguard-estado";
+
+    function obterEstadoQuiz() {
+        try {
+            return JSON.parse(sessionStorage.getItem(CHAVE_QUIZ)) || null;
+        } catch (erro) {
+            return null;
+        }
+    }
+
+    function salvarEstadoQuiz(tela) {
+        const respostas = perguntas.map((pergunta, indice) => {
+            const selecionada = document.querySelector(`input[name="quiz-pergunta-${indice}"]:checked`);
+            return selecionada ? Number(selecionada.value) : null;
+        });
+
+        const estado = {
+            tela,
+            participante,
+            respostas
+        };
+
+        try {
+            sessionStorage.setItem(CHAVE_QUIZ, JSON.stringify(estado));
+        } catch (erro) {
+            // O quiz continua funcionando mesmo quando o armazenamento da aba está indisponível.
+        }
+    }
+
+    function limparEstadoQuiz() {
+        try {
+            sessionStorage.removeItem(CHAVE_QUIZ);
+        } catch (erro) {
+            // Não é necessário interromper o quiz se o armazenamento estiver indisponível.
+        }
+    }
+
     function rolarPara(elemento, bloco) {
         const reduzirMovimento =
             window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -192,7 +229,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 radio.type = "radio";
                 radio.name = `quiz-pergunta-${indice}`;
                 radio.value = opcaoIndice;
-                radio.addEventListener("change", atualizarProgresso);
+                radio.addEventListener("change", function () {
+                    atualizarProgresso();
+                    salvarEstadoQuiz("perguntas");
+                });
 
                 const texto = document.createElement("span");
                 texto.textContent = opcao;
@@ -230,6 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         montarPerguntas();
         mostrarTela(telaPerguntas);
+        salvarEstadoQuiz("perguntas");
     });
 
     formRespostas.addEventListener("submit", function (evento) {
@@ -324,6 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         mostrarTela(resultado);
+        salvarEstadoQuiz("resultado");
     }
 
     $("quiz-refazer").addEventListener("click", function () {
@@ -347,9 +389,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
         participante = { nome: "", email: "" };
 
+        limparEstadoQuiz();
         mostrarTela(inicio);
         $("quiz-nome").focus();
     });
+
+    const estadoQuiz = obterEstadoQuiz();
+
+    if (estadoQuiz && estadoQuiz.participante) {
+        participante = estadoQuiz.participante;
+        $("quiz-nome").value = participante.nome;
+        $("quiz-email").value = participante.email;
+
+        if (estadoQuiz.tela === "perguntas") {
+            $("quiz-saudacao").textContent =
+                `Boa sorte, ${participante.nome}! Responda às 10 perguntas.`;
+            montarPerguntas();
+
+            if (Array.isArray(estadoQuiz.respostas)) {
+                estadoQuiz.respostas.forEach((resposta, indice) => {
+                    if (resposta !== null) {
+                        const radio = document.querySelector(
+                            `input[name="quiz-pergunta-${indice}"][value="${resposta}"]`
+                        );
+                        if (radio) radio.checked = true;
+                    }
+                });
+                atualizarProgresso();
+            }
+
+            mostrarTela(telaPerguntas);
+        } else if (estadoQuiz.tela === "resultado" && Array.isArray(estadoQuiz.respostas)) {
+            $("quiz-saudacao").textContent =
+                `Boa sorte, ${participante.nome}! Responda às 10 perguntas.`;
+            montarPerguntas();
+
+            const respostas = estadoQuiz.respostas.map(valor => ({ value: String(valor) }));
+            const acertos = respostas.reduce((total, resposta, indice) =>
+                Number(resposta.value) === perguntas[indice].correta ? total + 1 : total,
+            0);
+
+            mostrarResultado(acertos, respostas);
+        }
+    }
 })();
 
 // ACESSIBILIDADE
