@@ -1,32 +1,131 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-        <title>Quiz de Segurança Digital</title>
-        <link rel="stylesheet" href="../style.css">
-    </head>
-    <body>
-        <header>
-            <nav class="navbar">
-                <div class="logo-container">
-                    <img src="imagens/logo.png" alt="Logo CyberGuard" class="logo">
-                    <span class="nome-marca">CyberGuard</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../index.html#inicio">Home</a></li>
-                    <li><a href="ameacas.html#ameacas">Ameaças</a></li>
-                    <li><a href="protecao.html#protecao">Proteção</a></li>
-                    <li><a href="aprenda.html#aprenda">Aprenda</a></li>
-                    <li><a href="central.html#central">Central</a></li>
-                </ul>
-            </nav>
-        </header>
-        <footer>
-            <p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p>
-        </footer>
-        <script src="../app.js"></script>
-    </body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teste seus conhecimentos sobre segurança cibernética com o quiz CyberGuard.">
+    <title>Quiz | CyberGuard</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="imagens/logo.png">
+</head>
+
+<body class="pagina-quiz">
+
+<header>
+    <nav class="menu-principal">
+        <div class="marca">
+            <img src="imagens/logo.png" alt="Logo CyberGuard" class="logo">
+            <h3>
+                <span class="nome-marca">Cyber</span><span class="nome-marca-destaque">Guard</span>
+            </h3>
+        </div>
+
+        <ul class="links-menu">
+            <li><a href="../index.html#inicio">Início</a></li>
+            <li><a href="ameacas.html#ameacas">Ameaças</a></li>
+            <li><a href="protecao.html#protecao">Proteção</a></li>
+            <li><a href="aprenda.html#aprenda">Aprenda</a></li>
+            <li><a href="central.html#central">Central</a></li>
+            <li><a href="quiz.html#quiz" aria-current="page">Quiz</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="quiz" class="conteudo-quiz">
+
+    <div class="quiz-cabecalho">
+        <span class="quiz-etiqueta">[ CYBERGUARD_SYSTEM ]</span>
+        <h1>DESAFIO <span>CYBER</span></h1>
+        <p>Teste seus conhecimentos e descubra como se proteger no mundo digital.</p>
+    </div>
+
+    <section id="quiz-inicio" class="quiz-painel" tabindex="-1">
+        <img src="imagens/logo.png" alt="Logo CyberGuard" class="logo-quiz">
+
+        <span class="quiz-etiqueta quiz-etiqueta-painel">
+            [ IDENTIFICAÇÃO DO PARTICIPANTE ]
+        </span>
+
+        <h2>PRONTO PARA O DESAFIO?</h2>
+
+        <p class="quiz-instrucao">
+            Informe seus dados para começar.
+            O desafio contém 10 perguntas de múltipla escolha.
+        </p>
+
+        <form id="quiz-form-inicio">
+            <label class="quiz-campo" for="quiz-nome">NOME COMPLETO</label>
+            <input class="entrada-quiz" id="quiz-nome" type="text"
+                   placeholder="Digite seu nome completo" required autocomplete="name">
+
+            <label class="quiz-campo" for="quiz-email">E-MAIL</label>
+            <input class="entrada-quiz" id="quiz-email" type="email"
+                   placeholder="Digite seu e-mail" required autocomplete="email">
+
+            <p id="quiz-erro-inicio" class="quiz-erro" aria-live="polite"></p>
+
+            <button class="quiz-botao" type="submit">COMEÇAR QUIZ ▶</button>
+        </form>
+    </section>
+
+    <section id="quiz-perguntas" class="quiz-painel" tabindex="-1" hidden>
+        <div class="status-quiz">
+            <span>MISSÃO EM ANDAMENTO</span>
+            <span id="quiz-contador">0/10</span>
+        </div>
+
+        <div class="quiz-trilho" id="quiz-progresso" role="progressbar"
+             aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+            <div id="quiz-barra"></div>
+        </div>
+
+        <h2>RESPONDA AO DESAFIO</h2>
+        <p id="quiz-saudacao" class="quiz-saudacao"></p>
+
+        <form id="quiz-form-respostas">
+            <div id="quiz-lista-perguntas"></div>
+
+            <p id="quiz-erro-respostas" class="quiz-erro" aria-live="polite"></p>
+
+            <button class="quiz-botao" type="submit">ENVIAR RESPOSTAS ▶</button>
+        </form>
+    </section>
+
+    <section id="quiz-resultado" class="quiz-painel" tabindex="-1" hidden>
+        <span class="quiz-etiqueta quiz-etiqueta-painel">
+            [ RELATÓRIO FINAL ]
+        </span>
+
+        <h2>MISSÃO CONCLUÍDA!</h2>
+
+        <p id="quiz-dados-participante"></p>
+
+        <div class="quiz-pontuacao">
+            <strong id="quiz-nota">0/10</strong>
+            <span id="quiz-percentual">0%</span>
+            <p id="quiz-feedback"></p>
+        </div>
+
+        <h2>REVISÃO DAS RESPOSTAS</h2>
+        <div id="quiz-revisao"></div>
+
+        <button id="quiz-refazer" class="quiz-botao" type="button">
+            REFAZER QUIZ ↻
+        </button>
+    </section>
+
+</main>
+
+<footer class="rodape">
+    <p>
+        &copy; <span id="ano-copyright"></span>
+        CyberGuard. Todos os direitos reservados.
+    </p>
+</footer>
+
+<script src="../app.js"></script>
+
+</body>
 </html>
