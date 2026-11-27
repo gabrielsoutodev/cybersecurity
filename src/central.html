@@ -1,45 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-        <title>Central de Ajuda</title>
-        <link rel="stylesheet" href="../style.css">     
-    </head>
-    <body>
-        <header>
-    <nav class="menu-principal">
-        <div class="marca">
-            <img src="imagens/logo.png"
-                 alt="Logo CyberGuard"
-                 class="logo">
-            <span class="nome-marca">CyberGuard</span>
-        </div>
-        <ul class="links-menu">
-            <li><a href="../index.html#inicio">Início</a></li>
-            <li><a href="ameacas.html#ameacas">Ameaças</a></li>
-            <li><a href="protecao.html#protecao">Proteção</a></li>
-            <li><a href="aprenda.html#aprenda">Aprenda</a></li>
-            <li><a href="central.html#central">Central</a></li>
-        </ul>
-    </nav>
-</header>
-        <main>
-            <section id="central">
-                <h2>Central de Ajuda</h2>
-                <p>Bem-vindo à Central de Ajuda da CyberGuard. Aqui você encontrará informações e recursos para ajudá-lo a se proteger contra ameaças digitais.</p>
-                <ul>
-                    <li><strong>Suporte Técnico:</strong> Entre em contato com nossa equipe de suporte para assistência técnica.</li>
-                    <li><strong>FAQs:</strong> Consulte nossas perguntas frequentes para obter respostas rápidas.</li>
-                    <li><strong>Guias e Tutoriais:</strong> Acesse nossos guias passo a passo para aprender a se proteger online.</li>
-                </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Saiba o que fazer em caso de golpe, conta invadida, link suspeito ou roubo de celular.">
+    <title>Central de Ajuda | CyberGuard</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="pagina-central">
+    <header>
+        <nav class="menu-principal" aria-label="Menu principal">
+            <div class="marca">
+                <img src="imagens/logo.png" alt="" class="logo">
+                <h3><span class="nome-marca">Cyber</span><span class="nome-marca-destaque">Guard</span></h3>
+            </div>
+            <ul class="links-menu">
+                <li><a href="../index.html#inicio">Home</a></li>
+                <li><a href="ameacas.html#ameacas">Ameaças</a></li>
+                <li><a href="protecao.html">Proteção</a></li>
+                <li><a href="aprenda.html#aprenda">Aprenda</a></li>
+                <li><a href="#central" aria-current="page">Central</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="central">
+        <section class="central-topo" aria-labelledby="titulo-central">
+            <div class="central-limite">
+                <h1 id="titulo-central">Central de Ajuda</h1>
+                <p>Aconteceu algo suspeito? Escolha a situação pra saber o que fazer e onde buscar ajuda.</p>
+                <a class="botao-principal" href="#situacoes">Encontrar meu caso</a>
+            </div>
+        </section>
+
+        <div class="central-limite">
+            <section id="situacoes" class="central-secao" aria-labelledby="titulo-situacoes">
+                <h2 id="titulo-situacoes">O que aconteceu?</h2>
+                <p class="central-primeiros-passos"><strong>Houve pagamento ou movimentação que você não reconhece?</strong> Fale com seu banco pelo aplicativo oficial ou pelo telefone que consta no cartão.</p>
+
+                <div class="central-casos">
+                    <article class="cartao" aria-labelledby="titulo-pix">
+                        <h3 id="titulo-pix">Caí num golpe ou fiz um Pix</h3>
+                        <p>Conteste a transação pelo canal oficial do banco o quanto antes.</p>
+                        <details>
+                            <summary>Como contestar o pagamento</summary>
+                            <ol>
+                                <li>Se foi Pix, abra a transação no app do banco e procure a opção de contestar. Informe que houve golpe e solicite a análise pelo Mecanismo Especial de Devolução (MED).</li>
+                                <li>Se foi no cartão, peça o bloqueio e conteste as compras que você não reconhece.</li>
+                                <li>Guarde o comprovante, as conversas e o protocolo do atendimento. Registre um boletim de ocorrência com essas informações.</li>
+                            </ol>
+                            <a href="https://www.bcb.gov.br/meubc/faqs/p/o-que-e-e-como-funciona-o-mecanismo-especial-de-devolucao-med">Entenda o MED no Banco Central</a>
+                        </details>
+                    </article>
+
+                    <article class="cartao" aria-labelledby="titulo-conta">
+                        <h3 id="titulo-conta">Invadiram minha conta</h3>
+                        <p>Se seu e-mail de recuperação também foi invadido, proteja ele primeiro.</p>
+                        <details>
+                            <summary>Como recuperar e proteger a conta</summary>
+                            <ol>
+                                <li>Em um aparelho confiável, abra o site ou aplicativo oficial. Se perdeu o acesso, use a opção de recuperação.</li>
+                                <li>Quando recuperar a conta, troque a senha se o serviço usar uma. Revise os dispositivos conectados, encerre sessões que você não reconhece e confira o e-mail e o telefone de recuperação.</li>
+                                <li>Ative a verificação em duas etapas. Se alguém usou sua conta pra pedir dinheiro, avise seus contatos por outro canal.</li>
+                            </ol>
+                            <ul>
+                                <li><a href="https://faq.whatsapp.com/1131652977717250/">Recuperar conta do WhatsApp</a></li>
+                                <li><a href="https://www.instagram.com/hacked/">Recuperar conta do Instagram</a></li>
+                                <li><a href="https://support.google.com/accounts/answer/6294825?hl=pt-BR">Recuperar conta do Google ou Gmail</a></li>
+                            </ul>
+                        </details>
+                    </article>
+
+                    <article class="cartao" aria-labelledby="titulo-link">
+                        <h3 id="titulo-link">Cliquei num link suspeito</h3>
+                        <p>O próximo passo depende do que você fez depois de abrir o link.</p>
+                        <details>
+                            <summary>O que fazer depois do clique</summary>
+                            <ul>
+                                <li><strong>Só abriu a página?</strong> Feche a aba, recuse pedidos de permissão e confira se o navegador baixou algum arquivo.</li>
+                                <li><strong>Digitou uma senha ou código?</strong> Acesse o serviço oficial por outro aparelho confiável. Troque a senha, revise os acessos e mude a mesma senha onde ela tiver sido repetida.</li>
+                                <li><strong>Baixou um arquivo?</strong> Se ainda estiver fechado, deixe-o assim. Se abriu um arquivo ou instalou um app suspeito, evite usar o aparelho pra entrar em contas e procure ajuda pra verificá-lo. No Windows, faça uma verificação completa com o antivírus atualizado.</li>
+                            </ul>
+                            <a href="https://support.microsoft.com/pt-br/defender/antivirus-and-antimalware-software-faq">Orientações da Microsoft sobre antivírus</a>
+                        </details>
+                    </article>
+
+                    <article class="cartao" aria-labelledby="titulo-mensagem">
+                        <h3 id="titulo-mensagem">Recebi uma mensagem suspeita</h3>
+                        <p>Confirme a história pelo aplicativo oficial ou por um número que você já conhece.</p>
+                        <details>
+                            <summary>Como conferir e denunciar</summary>
+                            <ol>
+                                <li>Evite abrir links, ligar para números da mensagem ou enviar códigos de verificação.</li>
+                                <li>Se alguém pediu dinheiro em nome de um amigo ou familiar, ligue para o número que você já tinha salvo.</li>
+                                <li>Guarde o que for importante pra denúncia. Use a opção de denunciar da plataforma e bloqueie o contato.</li>
+                            </ol>
+                        </details>
+                    </article>
+
+                    <article class="cartao" aria-labelledby="titulo-celular">
+                        <h3 id="titulo-celular">Perdi meu celular ou fui roubado</h3>
+                        <p>Use outro aparelho pra falar com o banco e com a operadora.</p>
+                        <details>
+                            <summary>Como bloquear o celular e os acessos</summary>
+                            <ol>
+                                <li>Avise o banco e peça orientação pra bloquear o acesso pelo aparelho perdido. Peça à operadora o bloqueio da linha.</li>
+                                <li>Use o recurso oficial de localização do aparelho pra bloqueá-lo. Você também pode emitir um alerta pelo Celular Seguro.</li>
+                                <li>Revise os acessos das suas contas, começando pelo e-mail. Em caso de roubo ou furto, registre um boletim de ocorrência.</li>
+                            </ol>
+                            <a href="https://www.gov.br/mj/pt-br/acesso-a-informacao/acoes-e-programas/sofri-um-golpe-e-agora/levaram-meu-celular/">Orientações do Ministério da Justiça pra celular roubado</a>
+                        </details>
+                    </article>
+                </div>
             </section>
-        </main> 
-        <footer class="rodape">
-            <p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p>
-        </footer>
-        <script src="../app.js"></script>
-    </body>
+
+            <section class="central-secao central-faq" aria-labelledby="titulo-faq">
+                <h2 id="titulo-faq">Perguntas frequentes</h2>
+                <details>
+                    <summary>Contestar um Pix garante a devolução?</summary>
+                    <p>O banco analisa o caso pelo MED. A devolução pode ser total, parcial ou não ocorrer, dependendo da análise e do dinheiro disponível nas contas envolvidas. <a href="https://www.bcb.gov.br/meubc/faqs/p/o-que-e-e-como-funciona-o-mecanismo-especial-de-devolucao-med">Veja as regras do Banco Central</a>.</p>
+                </details>
+                <details>
+                    <summary>O que eu preciso guardar como prova?</summary>
+                    <p>Guarde prints das conversas, nome do perfil ou número de telefone, data e horário, comprovantes e protocolos. Compartilhe esses dados só com os canais oficiais envolvidos.</p>
+                </details>
+                <details>
+                    <summary>Recebi um código que não pedi. E agora?</summary>
+                    <p>Não repasse o código nem aprove um login que você não iniciou. Abra o aplicativo oficial pra conferir acessos e dispositivos conectados.</p>
+                </details>
+            </section>
+
+           <section id="canais" class="central-secao" aria-labelledby="titulo-canais">
+                <h2 id="titulo-canais">Canais oficiais de ajuda</h2>
+                <ul>
+                    <li><a href="https://delegaciavirtual.sinesp.gov.br/portal/home">Delegacia Virtual</a> — confira se dá pra registrar seu boletim de ocorrência online no seu estado.</li>
+                    <li><a href="https://www.gov.br/mj/pt-br/acesso-a-informacao/acoes-e-programas/sofri-um-golpe-e-agora">Aliança Nacional de Combate a Fraudes Bancárias Digitais</a> — orientações sobre o que fazer após sofrer um golpe.</li>
+                </ul>
+                <p>Pra reforçar sua segurança no dia a dia, veja também as páginas <a href="aprenda.html#aprenda">Aprenda</a> e <a href="protecao.html">Proteção</a>.</p>
+            </section>
+
+            <section class="central-ajuda" aria-labelledby="titulo-ajuda">
+                <h2 id="titulo-ajuda">Precisa de mais ajuda?</h2>
+                <p>Entre em contato com nossa equipe de suporte</p>
+                <a class="botao-home" href="#canais">Ver canal de ajuda</a>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p>
+    </footer>
+    <script src="../app.js"></script>
+</body>
 </html>
