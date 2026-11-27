@@ -347,7 +347,7 @@ body {
 }
 
 /* Botões exclusivos da página Proteção */
-#proteção .botao-home,
+#protecao .botao-home,
 #desafio-protecao .botao-home {
     background-color: #27066A;
     color: #ffffff;
@@ -355,8 +355,8 @@ body {
                 box-shadow 180ms ease, transform 180ms ease;
 }
 
-#proteção .botao-home:hover,
-#proteção .botao-home:focus-visible,
+#protecao .botao-home:hover,
+#protecao .botao-home:focus-visible,
 #desafio-protecao .botao-home:hover,
 #desafio-protecao .botao-home:focus-visible {
     background-color: #1D054F;
@@ -370,16 +370,228 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #proteção .botao-home,
+    #protecao .botao-home,
     #desafio-protecao .botao-home {
         transition: none;
     }
 
-    #proteção .botao-home:hover,
-    #proteção .botao-home:focus-visible,
+    #protecao .botao-home:hover,
+    #protecao .botao-home:focus-visible,
     #desafio-protecao .botao-home:hover,
     #desafio-protecao .botao-home:focus-visible {
         transform: none;
+    }
+}
+
+/* Estilos compartilhados pelas páginas que ainda usam as classes antigas */
+.aprenda .subtitulo,
+#protecao .subtitulo {
+    color: var(--primaria);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.aprenda .titulo,
+#protecao .titulo {
+    margin: 15px 0 25px;
+    font-size: 2.625rem;
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.aprenda .titulo span,
+#protecao .titulo span {
+    display: block;
+    color: var(--primaria);
+}
+
+.aprenda .texto-central,
+#protecao .texto-central {
+    color: var(--texto-suave);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+}
+
+#protecao .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 65px 50px;
+}
+
+#protecao .hero-conteudo {
+    max-width: 600px;
+}
+
+#protecao .hero-imagem {
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+}
+
+#protecao .explorar {
+    padding: 45px 50px;
+    background: var(--superficie-alt);
+    text-align: center;
+}
+
+#protecao .cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.aprenda .card,
+#protecao .card {
+    min-width: 0;
+    padding: 25px;
+    border-radius: 12px;
+    background: var(--superficie);
+    color: var(--texto);
+    box-shadow: var(--sombra);
+    text-align: left;
+}
+
+.aprenda .card h3,
+#protecao .card h3 {
+    color: var(--primaria);
+}
+
+.aprenda .card p,
+#protecao .card p {
+    color: var(--texto-suave);
+    line-height: 1.5;
+}
+
+.aprenda .botao-home,
+#protecao .botao-home {
+    display: inline-block;
+    padding: 14px 25px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--primaria);
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+#protecao .escudo-atalho[hidden] {
+    display: none;
+}
+
+#desafio-protecao.explorar {
+    padding: 45px 50px;
+    background: var(--superficie-alt);
+    text-align: center;
+}
+
+#desafio-protecao > p {
+    margin-bottom: 30px;
+    color: var(--texto-suave);
+}
+
+#desafio-protecao .card {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vw, 32px);
+    border-radius: 12px;
+    background: var(--superficie);
+    color: var(--texto);
+    box-shadow: var(--sombra);
+    text-align: left;
+}
+
+#desafio-protecao .card h3 {
+    color: var(--primaria);
+    line-height: 1.35;
+}
+
+#desafio-protecao .card p {
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+
+#desafio-protecao .botao-home {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font: inherit;
+    line-height: 1.45;
+    cursor: pointer;
+}
+
+#desafio-protecao #proximo-cenario,
+#desafio-protecao #reiniciar-desafio {
+    margin-top: 12px;
+    text-align: center;
+}
+
+#desafio-protecao .opcoes button {
+    text-align: left;
+}
+
+#desafio-protecao .opcoes button:hover,
+#desafio-protecao .opcoes button:focus-visible {
+    background: #1D054F;
+    color: #fff;
+}
+
+#desafio-protecao .opcoes button[aria-pressed="true"] {
+    border-color: #BCA5F5;
+    box-shadow: inset 0 0 0 2px #BCA5F5;
+}
+
+#desafio-protecao [role="status"] {
+    min-height: 3em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #desafio-protecao .opcoes button {
+        transition: none;
+    }
+}
+
+@media (max-width: 850px) {
+    #protecao .hero {
+        grid-template-columns: 1fr;
+        padding: 40px 25px;
+    }
+
+    #protecao .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #desafio-protecao.explorar {
+        padding: 40px 25px;
+    }
+}
+
+@media (max-width: 550px) {
+    .aprenda .titulo,
+    #protecao .titulo {
+        font-size: 2rem;
+    }
+
+    #protecao .cards {
+        grid-template-columns: 1fr;
+    }
+
+    #protecao .explorar {
+        padding: 35px 20px;
+    }
+
+    #desafio-protecao.explorar {
+        padding: 35px 20px;
     }
 }
 

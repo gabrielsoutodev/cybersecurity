@@ -27,7 +27,7 @@
             </nav>
         </header>
         <main>
-        <section id="proteção" aria-labelledby="titulo-protecao">
+        <section id="protecao" aria-labelledby="titulo-protecao">
             <div class="hero">
                 <div class="hero-conteudo">
                     <h2 id="titulo-protecao" class="titulo">
@@ -325,39 +325,51 @@
             (() => {
                 const cenarios = [
                     {
-                        titulo: "Seu banco mandou um alerta?",
-                        descricao: "Uma mensagem diz que sua conta foi bloqueada e pede que você clique em um link. O que você faz?",
+                        titulo: "Alerta bancário com prazo curto",
+                        descricao: "Um e-mail com o nome e o logotipo do seu banco diz que um novo aparelho acessou sua conta e pede confirmação em 10 minutos. Você não reconhece o acesso. Como verifica o aviso com segurança?",
                         opcoes: [
-                            ["Abro o link para conferir.",
-                             "O link pode levar a uma página falsa. Confira pelo aplicativo oficial do banco."],
-                            ["Respondo para pedir detalhes.",
-                             "O remetente pode se passar pelo banco. Confira pelo aplicativo oficial."],
-                            ["Confiro pelo aplicativo oficial do banco.",
-                             "Boa decisão. Pelo app oficial, você pode conferir se existe um alerta real."]
+                            ["Abro o link, mas confiro o endereço antes de digitar.",
+                             "Mesmo um endereço parecido pode esconder diferenças. Feche a mensagem e abra o aplicativo ou site do banco pelo caminho habitual."],
+                            ["Respondo pedindo o protocolo do atendimento.",
+                             "Uma resposta não confirma quem enviou o e-mail. Procure o aviso no aplicativo oficial ou ligue para o número do cartão."],
+                            ["Fecho o e-mail e confiro pelo app ou telefone oficial do banco.",
+                             "Boa decisão. Você evita o link recebido e confirma o alerta por um canal que já conhece."]
                         ]
                     },
                     {
-                        titulo: "Sua senha apareceu em um vazamento",
-                        descricao: "Você descobriu que uma senha vazou e lembrou que usa a mesma senha em outras contas. O que você faz?",
+                        titulo: "Uma senha reutilizada apareceu em um vazamento",
+                        descricao: "Um aviso legítimo informa que a senha usada no e-mail também apareceu em um vazamento. Você reutilizou essa senha em outras contas. Qual plano reduz melhor o risco?",
                         opcoes: [
-                            ["Troco a senha só na conta que avisou.",
-                             "As outras contas continuam expostas. Troque a senha em todas as contas em que você a reutilizou."],
-                            ["Troco a senha em todas as contas em que a reutilizei.",
-                             "Boa decisão. Use uma senha diferente para cada conta e ative a verificação em duas etapas."],
-                            ["Continuo usando a mesma senha.",
-                             "Quem tiver a senha vazada pode tentar usá-la nas suas contas. Troque-a em todas as contas afetadas."]
+                            ["Troco primeiro a senha do e-mail em um dispositivo confiável; depois, as reutilizadas, encerro sessões e ativo a verificação em duas etapas.",
+                             "Boa decisão. O e-mail pode recuperar outras contas. Senhas únicas, sessões encerradas e uma segunda etapa reduzem o risco em conjunto."],
+                            ["Troco só a senha da conta que enviou o aviso e espero para ver se acontece algo.",
+                             "As outras contas que reutilizam a senha continuam expostas. Troque também essas senhas, começando pelas contas importantes."],
+                            ["Mantenho as senhas iguais e ativo a verificação em duas etapas apenas no e-mail.",
+                             "A verificação extra ajuda, mas não substitui senhas únicas. Troque a senha em todas as contas onde ela foi reutilizada."]
                         ]
                     },
                     {
-                        titulo: "Um conhecido pediu Pix com urgência",
-                        descricao: "Uma mensagem de um número novo diz ser de alguém que você conhece e pede dinheiro com urgência. O que você faz?",
+                        titulo: "Pedido de Pix vindo de um número novo",
+                        descricao: "Um número novo usa a foto de uma pessoa conhecida e pede um Pix urgente. A mensagem cita um detalhe pessoal e diz que não pode atender uma ligação. Como confirma que o pedido é real?",
                         opcoes: [
-                            ["Ligo para o número que eu já tinha salvo.",
-                             "Boa decisão. Ligue para o contato que você conhece e só transfira depois de confirmar."],
-                            ["Faço o Pix na hora.",
-                             "A urgência pode fazer parte do golpe. Confirme com a pessoa por um canal conhecido antes de transferir."],
-                            ["Peço confirmação pelo mesmo número.",
-                             "Quem enviou a mensagem também pode responder por esse número. Use um contato que você já tinha salvo."]
+                            ["Ligo para o número que eu já tinha salvo e confirmo pessoa, valor e destinatário antes de transferir.",
+                             "Boa decisão. Use um contato conhecido e confirme os detalhes do pagamento antes de fazer qualquer transferência."],
+                            ["Faço um Pix pequeno para testar se a pessoa responde.",
+                             "Até um valor pequeno pode ir para o golpista. Confirme a identidade por um contato que você já tinha salvo."],
+                            ["Faço uma pergunta pessoal pelo mesmo número para confirmar.",
+                             "Quem controla o número pode inventar uma resposta. Ligue para o contato conhecido ou confirme pessoalmente."]
+                        ]
+                    },
+                    {
+                        titulo: "Chegou um pedido de aprovação que você não iniciou",
+                        descricao: "Seu celular mostra uma solicitação de verificação em duas etapas durante uma reunião. Você não está tentando entrar na conta. Qual é a resposta mais segura?",
+                        opcoes: [
+                            ["Aprovo para parar as notificações e troco a senha depois.",
+                             "A aprovação pode liberar o acesso naquele momento. Recuse o pedido e só então proteja a conta pelo site ou aplicativo oficial."],
+                            ["Recuso, não compartilho códigos e verifico a conta pelo canal oficial.",
+                             "Boa decisão. Recuse solicitações que não iniciou, nunca compartilhe códigos e revise sessões e senha pelo serviço oficial."],
+                            ["Envio o código ao suporte que entrou em contato por mensagem.",
+                             "Códigos de verificação são secretos. Não os envie a ninguém; entre em contato com o suporte pelo site ou app oficial."]
                         ]
                     }
                 ];
@@ -385,6 +397,7 @@
                     descricao.textContent = atual.descricao;
                     feedback.textContent = "";
                     proximo.hidden = true;
+                    proximo.disabled = false;
                     proximo.textContent = indice < cenarios.length - 1
                         ? "Próximo cenário"
                         : "Ver resumo";
@@ -406,6 +419,8 @@
                 });
 
                 proximo.addEventListener("click", () => {
+                    if (proximo.disabled) return;
+                    proximo.disabled = true;
                     indice += 1;
 
                     if (indice === cenarios.length) {
