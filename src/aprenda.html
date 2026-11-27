@@ -8,45 +8,253 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        .aprenda { --roxo: #27066a; --roxo-escuro: #1d054f; --lilas: #bca5f5; --lilas-claro: #f2edff; }
-        .aprenda .botao-home:hover, .aprenda .botao-home:focus-visible { background-color: var(--roxo-escuro); color: #fff; }
-        .aprenda :is(a, button, summary):focus-visible { outline: 3px solid var(--roxo); outline-offset: 4px; }
-        .aprenda-secao { padding: clamp(32px, 6vw, 70px) clamp(20px, 5vw, 50px); }
-        .aprenda-secao > .conteudo { max-width: 1160px; margin-inline: auto; }
-        .aprenda-secao h2 { color: var(--roxo); margin: 0 0 12px; font-size: clamp(24px, 4vw, 34px); }
-        .aprenda-secao .texto-central { margin-top: 0; }
-        .aprenda .raio-x { background: #f5f5f8; }
-        .aprenda .laboratorio { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: stretch; }
-        .aprenda .mensagem, .aprenda .analise { padding: clamp(18px, 3vw, 28px); border-radius: 16px; min-width: 0; }
-        .aprenda .mensagem { background: #fff; border: 1px solid #e1d8f5; box-shadow: 0 4px 18px rgba(39, 6, 106, .08); }
-        .aprenda .mensagem h3, .aprenda .analise h3 { margin: 0 0 12px; }
-        .aprenda .mensagem p, .aprenda .analise p { line-height: 1.55; }
-        .aprenda .mensagem p { overflow-wrap: anywhere; }
-        .aprenda .pistas { display: grid; gap: 8px; margin-top: 20px; }
-        .aprenda .pista, .aprenda .reiniciar { font: inherit; cursor: pointer; }
-        .aprenda .pista { min-height: 44px; padding: 10px 14px; border: 1px solid var(--lilas); border-radius: 10px; background: var(--lilas-claro); color: var(--roxo); text-align: left; font-weight: 700; transition: background-color .18s ease, transform .18s ease; }
-        .aprenda .pista:hover, .aprenda .pista[aria-pressed="true"] { background: var(--roxo-escuro); color: #fff; }
-        .aprenda .pista:hover { transform: translateY(-2px); }
-        .aprenda .analise { background: var(--roxo); color: #fff; }
-        .aprenda .contador { display: block; margin-bottom: 14px; color: #e3d8ff; font-weight: 700; }
-        .aprenda .reiniciar { min-height: 44px; padding: 8px 14px; margin-top: 8px; border: 1px solid var(--lilas); border-radius: 10px; background: transparent; color: #fff; }
-        .aprenda .reiniciar:hover { background: var(--roxo-escuro); }
-        .aprenda .reiniciar:focus-visible { outline-color: #fff; }
-        .aprenda .conceitos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-        .aprenda .conceitos .card:hover { transform: none; }
-        .aprenda .perguntas { background: var(--lilas-claro); }
-        .aprenda details { margin-block: 10px; padding: 0 16px; border: 1px solid #e1d8f5; border-radius: 10px; background: #fff; }
-        .aprenda summary { padding: 14px 0; color: var(--roxo); font-weight: 700; cursor: pointer; }
-        .aprenda details p { margin: 0 0 16px; line-height: 1.6; }
-        .aprenda [hidden] { display: none; }
-        @media (max-width: 760px) { .aprenda .laboratorio, .aprenda .conceitos { grid-template-columns: 1fr; } }
-        @media (prefers-reduced-motion: reduce) { .aprenda .pista, .aprenda .botao-home { transition: none; } .aprenda .pista:hover { transform: none; } }
+        .aprenda {
+            --roxo: #27066a;
+            --roxo-escuro: #1d054f;
+            --lilas: #bca5f5;
+            --lilas-claro: #f2edff;
+        }
+
+        .aprenda .botao-principal:hover,
+        .aprenda .botao-principal:focus-visible {
+            background-color: var(--roxo-escuro);
+            color: #fff;
+        }
+
+        .aprenda :is(a, button, summary):focus-visible {
+            outline: 3px solid var(--roxo);
+            outline-offset: 4px;
+        }
+
+        .aprenda-secao {
+            padding: clamp(32px, 6vw, 70px) clamp(20px, 5vw, 50px);
+        }
+
+        .aprenda-secao > .conteudo {
+            max-width: 1160px;
+            margin-inline: auto;
+        }
+
+        .aprenda-secao h2 {
+            color: var(--roxo);
+            margin: 0 0 12px;
+            font-size: clamp(24px, 4vw, 34px);
+        }
+
+        .aprenda-secao .texto-introducao {
+            margin-top: 0;
+        }
+
+        .aprenda .raio-x {
+            background: #f5f5f8;
+        }
+
+        .aprenda .laboratorio {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .aprenda .mensagem,
+        .aprenda .analise {
+            padding: clamp(18px, 3vw, 28px);
+            border-radius: 16px;
+            min-width: 0;
+        }
+
+        .aprenda .mensagem {
+            background: #fff;
+            border: 1px solid #e1d8f5;
+            box-shadow: 0 4px 18px rgba(39, 6, 106, .08);
+        }
+
+        .aprenda .mensagem h3,
+        .aprenda .analise h3 {
+            margin: 0 0 12px;
+        }
+
+        .aprenda .mensagem p,
+        .aprenda .analise p {
+            line-height: 1.55;
+        }
+
+        .aprenda .mensagem p {
+            overflow-wrap: anywhere;
+        }
+
+        .aprenda .pistas {
+            display: grid;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .aprenda .pista,
+        .aprenda .reiniciar {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .aprenda .pista {
+            min-height: 44px;
+            padding: 10px 14px;
+            border: 1px solid var(--lilas);
+            border-radius: 10px;
+            background: var(--lilas-claro);
+            color: var(--roxo);
+            text-align: left;
+            font-weight: 700;
+            transition: background-color .18s ease, transform .18s ease;
+        }
+
+        .aprenda .pista:hover,
+        .aprenda .pista[aria-pressed="true"] {
+            background: var(--roxo-escuro);
+            color: #fff;
+        }
+
+        .aprenda .pista:hover {
+            transform: translateY(-2px);
+        }
+
+        .aprenda .analise {
+            background: var(--roxo);
+            color: #fff;
+        }
+
+        .aprenda .contador {
+            display: block;
+            margin-bottom: 14px;
+            color: #e3d8ff;
+            font-weight: 700;
+        }
+
+        .aprenda .reiniciar {
+            min-height: 44px;
+            padding: 8px 14px;
+            margin-top: 8px;
+            border: 1px solid var(--lilas);
+            border-radius: 10px;
+            background: transparent;
+            color: #fff;
+        }
+
+        .aprenda .reiniciar:hover {
+            background: var(--roxo-escuro);
+        }
+
+        .aprenda .reiniciar:focus-visible {
+            outline-color: #fff;
+        }
+
+        .aprenda .conceitos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .aprenda .conceitos .cartao:hover {
+            transform: none;
+        }
+
+        .aprenda .perguntas {
+            background: var(--lilas-claro);
+        }
+
+        .aprenda details {
+            margin-block: 10px;
+            padding: 0 16px;
+            border: 1px solid #e1d8f5;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .aprenda summary {
+            padding: 14px 0;
+            color: var(--roxo);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .aprenda details p {
+            margin: 0 0 16px;
+            line-height: 1.6;
+        }
+
+        .aprenda [hidden] {
+            display: none;
+        }
+
+        @media (max-width: 760px) {
+            .aprenda .laboratorio,
+            .aprenda .conceitos {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .aprenda .pista,
+            .aprenda .botao-principal {
+                transition: none;
+            }
+
+            .aprenda .pista:hover {
+                transform: none;
+            }
+        }
+
+        /* Cores compartilhadas com os temas de acessibilidade do site. */
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda {
+            --roxo: var(--primaria);
+            --roxo-escuro: var(--primaria);
+            --lilas: var(--borda);
+            --lilas-claro: var(--superficie-alt);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda .raio-x {
+            background: var(--superficie-alt);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda
+            :is(.mensagem, .analise, details) {
+            background: var(--superficie);
+            color: var(--texto);
+            border: 1px solid var(--borda);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda .mensagem {
+            box-shadow: var(--sombra);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda .contador {
+            color: var(--texto-suave);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda .reiniciar {
+            color: var(--texto);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda
+            :is(.botao-principal:hover, .botao-principal:focus-visible,
+                .pista:hover, .pista[aria-pressed="true"], .reiniciar:hover) {
+            background: var(--primaria);
+            color: var(--fundo);
+        }
+
+        :is([data-tema="escuro"], [data-tema="contraste"]) .aprenda .reiniciar:focus-visible {
+            outline-color: var(--primaria);
+        }
     </style>
 </head>
+
 <body>
     <header>
         <nav class="menu-principal" aria-label="Menu principal">
-            <div class="marca"><img src="imagens/logo.png" alt="" class="logo"><span class="nome-marca">CyberGuard</span></div>
+            <div class="marca">
+                <img src="imagens/logo.png" alt="" class="logo">
+                <span class="nome-marca">CyberGuard</span>
+            </div>
+
             <ul class="links-menu">
                 <li><a href="../index.html#inicio">Home</a></li>
                 <li><a href="ameacas.html#ameacas">Ameaças</a></li>
@@ -60,30 +268,49 @@
     <main class="aprenda" id="aprenda">
         <section class="aprenda-secao" aria-labelledby="titulo-aprenda">
             <div class="conteudo">
-                <span class="subtitulo">APRENDA COM O CYBERGUARD</span>
-                <h1 class="titulo">Você reconheceria <span>uma mensagem falsa?</span></h1>
-                <p class="texto-central">Investigue uma mensagem fictícia e aprenda a conferir quem enviou, para onde o link levaria e por que a mensagem tenta apressar você.</p>
-                <a class="botao-home" href="#raio-x">Investigar a mensagem</a>
+                <span class="etiqueta-secao">APRENDA COM O CYBERGUARD</span>
+                <h1 id="titulo-aprenda" class="titulo-principal">
+                    Você reconheceria <span>uma mensagem falsa?</span>
+                </h1>
+                <p class="texto-introducao">
+                    Investigue uma mensagem fictícia e aprenda a conferir quem enviou,
+                    para onde o link levaria e por que a mensagem tenta apressar você.
+                </p>
+                <a class="botao-principal" href="#raio-x">Investigar a mensagem</a>
             </div>
         </section>
 
         <section class="aprenda-secao raio-x" id="raio-x" aria-labelledby="titulo-raio-x">
             <div class="conteudo">
                 <h2 id="titulo-raio-x">Raio-X da Mensagem</h2>
-                <p class="texto-central">Leia o exemplo e clique nas três pistas para descobrir o que merece atenção.</p>
+                <p class="texto-introducao">
+                    Leia o exemplo e clique nas três pistas para descobrir o que merece atenção.
+                </p>
+
                 <div class="laboratorio">
                     <article class="mensagem" aria-labelledby="titulo-mensagem">
-                        <p class="subtitulo">MENSAGEM FICTÍCIA</p>
+                        <p class="etiqueta-secao">MENSAGEM FICTÍCIA</p>
                         <h3 id="titulo-mensagem">Aviso sobre sua conta</h3>
                         <p><strong>De:</strong> Central de Conta &lt;alerta@conta-exemplo.invalid&gt;</p>
-                        <p>Sua conta será bloqueada em 15 minutos. Confirme seu acesso agora para manter a conta ativa.</p>
+                        <p>
+                            Sua conta será bloqueada em 15 minutos. Confirme seu acesso
+                            agora para manter a conta ativa.
+                        </p>
                         <p><strong>Endereço exibido:</strong> <code>conta-exemplo.invalid</code></p>
+
                         <div class="pistas" role="group" aria-label="Pistas da mensagem" hidden>
-                            <button class="pista" type="button" data-pista="remetente" aria-pressed="false">Investigar o remetente</button>
-                            <button class="pista" type="button" data-pista="endereco" aria-pressed="false">Investigar o endereço</button>
-                            <button class="pista" type="button" data-pista="urgencia" aria-pressed="false">Investigar o prazo</button>
+                            <button class="pista" type="button" data-pista="remetente" aria-pressed="false">
+                                Investigar o remetente
+                            </button>
+                            <button class="pista" type="button" data-pista="endereco" aria-pressed="false">
+                                Investigar o endereço
+                            </button>
+                            <button class="pista" type="button" data-pista="urgencia" aria-pressed="false">
+                                Investigar o prazo
+                            </button>
                         </div>
                     </article>
+
                     <article class="analise" aria-labelledby="titulo-analise">
                         <h3 id="titulo-analise">Sua investigação</h3>
                         <div role="status" aria-atomic="true">
@@ -91,10 +318,19 @@
                             <p><strong id="nome-pista">Por onde você começaria?</strong></p>
                             <p id="descricao-pista">Escolha uma pista para ver a explicação aqui.</p>
                         </div>
-                        <button class="reiniciar" type="button" id="reiniciar-analise" hidden>Recomeçar análise</button>
+                        <button class="reiniciar" type="button" id="reiniciar-analise" hidden>
+                            Recomeçar análise
+                        </button>
                     </article>
                 </div>
-                <noscript><p>As três pistas são o endereço do remetente, o domínio exibido e o prazo de 15 minutos. Diante de um aviso inesperado, confira pelo aplicativo ou site oficial.</p></noscript>
+
+                <noscript>
+                    <p>
+                        As três pistas são o endereço do remetente, o domínio exibido e
+                        o prazo de 15 minutos. Diante de um aviso inesperado, confira pelo
+                        aplicativo ou site oficial.
+                    </p>
+                </noscript>
             </div>
         </section>
 
@@ -102,9 +338,27 @@
             <div class="conteudo">
                 <h2 id="titulo-conceitos">Entenda o que você encontrou</h2>
                 <div class="conceitos">
-                    <article class="card"><h3>Phishing</h3><p>É uma tentativa de enganar você para conseguir informações como senhas ou levar você a fazer algo, como abrir um arquivo.</p></article>
-                    <article class="card"><h3>Domínio</h3><p>É o nome do site no endereço. Se tiver dúvida, abra o app oficial ou digite o endereço que você já conhece.</p></article>
-                    <article class="card"><h3>Pressão para agir</h3><p>Um prazo curto pode fazer você pular a conferência. Pause e verifique o pedido por um canal conhecido.</p></article>
+                    <article class="cartao">
+                        <h3>Phishing</h3>
+                        <p>
+                            É uma tentativa de enganar você para conseguir informações como
+                            senhas ou levar você a fazer algo, como abrir um arquivo.
+                        </p>
+                    </article>
+                    <article class="cartao">
+                        <h3>Domínio</h3>
+                        <p>
+                            É o nome do site no endereço. Se tiver dúvida, abra o app
+                            oficial ou digite o endereço que você já conhece.
+                        </p>
+                    </article>
+                    <article class="cartao">
+                        <h3>Pressão para agir</h3>
+                        <p>
+                            Um prazo curto pode fazer você pular a conferência.
+                            Pause e verifique o pedido por um canal conhecido.
+                        </p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -112,32 +366,69 @@
         <section class="aprenda-secao perguntas" aria-labelledby="titulo-perguntas">
             <div class="conteudo">
                 <h2 id="titulo-perguntas">Perguntas para a turma</h2>
-                <p class="texto-central">Converse sobre cada pergunta antes de abrir a resposta.</p>
-                <details><summary>Uma mensagem com o logo certo é confiável?</summary><p>Uma imagem do logo pode ser copiada. Confira o endereço do remetente e procure o aviso pelo canal oficial.</p></details>
-                <details><summary>Um aviso urgente é sempre golpe?</summary><p>Avisos legítimos também podem ser urgentes. Abra o app ou site oficial por conta própria e veja se o aviso aparece lá.</p></details>
-                <details><summary>O que você faria se um amigo encaminhasse essa mensagem?</summary><p>Eu conferiria o aviso pelo canal oficial antes de repassar e avisaria o amigo de que a mensagem merece uma checagem.</p></details>
+                <p class="texto-introducao">
+                    Converse sobre cada pergunta antes de abrir a resposta.
+                </p>
+
+                <details>
+                    <summary>Uma mensagem com o logo certo é confiável?</summary>
+                    <p>
+                        Uma imagem do logo pode ser copiada. Confira o endereço do
+                        remetente e procure o aviso pelo canal oficial.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Um aviso urgente é sempre golpe?</summary>
+                    <p>
+                        Avisos legítimos também podem ser urgentes. Abra o app ou site
+                        oficial por conta própria e veja se o aviso aparece lá.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>O que você faria se um amigo encaminhasse essa mensagem?</summary>
+                    <p>
+                        Eu conferiria o aviso pelo canal oficial antes de repassar e
+                        avisaria o amigo de que a mensagem merece uma checagem.
+                    </p>
+                </details>
             </div>
         </section>
 
         <section class="aprenda-secao" aria-labelledby="titulo-pratica">
             <div class="conteudo">
                 <h2 id="titulo-pratica">Coloque em prática</h2>
-                <p class="texto-central">Monte seu Escudo Digital e use o que aprendeu no Desafio de Proteção.</p>
-                <a class="botao-home" href="protecao.html#protecao">Ir para Proteção</a>
+                <p class="texto-introducao">
+                    Monte seu Escudo Digital e use o que aprendeu no Desafio de Proteção.
+                </p>
+                <a class="botao-principal" href="protecao.html#protecao">Ir para Proteção</a>
             </div>
         </section>
     </main>
 
-    <footer class="rodape"><p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p></footer>
+    <footer class="rodape">
+        <p>&copy; <span id="ano-copyright"></span> CyberGuard. Todos os direitos reservados.</p>
+    </footer>
 
     <script src="../app.js"></script>
     <script>
         (() => {
             const explicacoes = {
-                remetente: { titulo: "Confira o endereço do remetente", texto: "O nome “Central de Conta” pode ser escolhido por quem envia. Confira o endereço completo e procure o aviso pelo canal oficial." },
-                endereco: { titulo: "Confira o domínio", texto: "Um endereço parecido com o oficial pode confundir. Neste exemplo, o domínio é fictício. Na vida real, abra o aplicativo oficial por conta própria." },
-                urgencia: { titulo: "Desconfie da pressão para agir", texto: "O prazo de 15 minutos tenta fazer você agir sem conferir. Mesmo que pareça urgente, verifique o aviso por um canal que você já conhece." }
+                remetente: {
+                    titulo: "Confira o endereço do remetente",
+                    texto: "O nome “Central de Conta” pode ser escolhido por quem envia. Confira o endereço completo e procure o aviso pelo canal oficial."
+                },
+                endereco: {
+                    titulo: "Confira o domínio",
+                    texto: "Um endereço parecido com o oficial pode confundir. Neste exemplo, o domínio é fictício. Na vida real, abra o aplicativo oficial por conta própria."
+                },
+                urgencia: {
+                    titulo: "Desconfie da pressão para agir",
+                    texto: "O prazo de 15 minutos tenta fazer você agir sem conferir. Mesmo que pareça urgente, verifique o aviso por um canal que você já conhece."
+                }
             };
+
             const grupo = document.querySelector(".aprenda .pistas");
             const botoes = grupo.querySelectorAll("button[data-pista]");
             const contador = document.getElementById("contador-pistas");
@@ -150,11 +441,19 @@
                 botao.addEventListener("click", () => {
                     const pista = botao.dataset.pista;
                     encontradas.add(pista);
-                    botoes.forEach(opcao => opcao.setAttribute("aria-pressed", String(opcao === botao)));
+
+                    botoes.forEach(opcao => {
+                        opcao.setAttribute("aria-pressed", String(opcao === botao));
+                    });
+
                     contador.textContent = `${encontradas.size} de ${botoes.length} pistas encontradas`;
                     nome.textContent = explicacoes[pista].titulo;
                     descricao.textContent = explicacoes[pista].texto;
-                    if (encontradas.size === botoes.length) descricao.textContent += " Análise completa: confira o remetente, o domínio e qualquer pressão para agir.";
+
+                    if (encontradas.size === botoes.length) {
+                        descricao.textContent += " Análise completa: confira o remetente, o domínio e qualquer pressão para agir.";
+                    }
+
                     reiniciar.hidden = false;
                 });
             });
