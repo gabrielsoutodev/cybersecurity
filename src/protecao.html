@@ -65,6 +65,10 @@
                     <p class="escudo-status" role="status">
                         0 de 4 camadas. Escolha uma proteção para começar.
                     </p>
+
+                    <a class="botao-home escudo-atalho" href="#desafio-protecao" hidden>
+                        Testar meu escudo
+                    </a>
                 </section>
             </div>
 
@@ -251,6 +255,21 @@
                 line-height: 1.45;
             }
 
+            .escudo .escudo-atalho {
+                margin-top: 12px;
+                border: 1px solid #bca5f5;
+            }
+
+            .escudo .escudo-atalho[hidden] {
+                display: none;
+            }
+
+            .escudo .escudo-atalho:hover,
+            .escudo .escudo-atalho:focus-visible {
+                background-color: #1d054f;
+                color: #fff;
+            }
+
             @media (prefers-reduced-motion: reduce) {
                 .escudo-forma,
                 .escudo-camadas span,
@@ -419,6 +438,7 @@
                 const camadas = escudo.querySelectorAll(".escudo-camadas span");
                 const status = escudo.querySelector(".escudo-status");
                 const duasEtapas = escudo.querySelector("[data-duas-etapas]");
+                const atalho = escudo.querySelector(".escudo-atalho");
 
                 botoes.forEach((botao, indice) => {
                     botao.addEventListener("click", () => {
@@ -437,6 +457,7 @@
 
                         const completo = total === botoes.length;
                         escudo.toggleAttribute("data-completo", completo);
+                        atalho.hidden = !completo;
 
                         const abertura = completo ? "Escudo completo! " : "";
                         const dica = ativada
